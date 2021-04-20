@@ -14,6 +14,10 @@
 		B719A195262F58A500337783 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B719A194262F58A500337783 /* Assets.xcassets */; };
 		B719A198262F58A500337783 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B719A197262F58A500337783 /* Preview Assets.xcassets */; };
 		B719A19B262F58A500337783 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B719A199262F58A500337783 /* LaunchScreen.storyboard */; };
+		B719A1AC262F651100337783 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B719A1AB262F651100337783 /* LoginView.swift */; };
+		B719A1AF262F652200337783 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B719A1AE262F652200337783 /* MainView.swift */; };
+		B719A1B2262F653900337783 /* ForgotPassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = B719A1B1262F653900337783 /* ForgotPassword.swift */; };
+		B719A1B7262F65D800337783 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B719A1B6262F65D700337783 /* UserData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +30,10 @@
 		B719A197262F58A500337783 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		B719A19A262F58A500337783 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B719A19C262F58A500337783 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B719A1AB262F651100337783 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		B719A1AE262F652200337783 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		B719A1B1262F653900337783 /* ForgotPassword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPassword.swift; sourceTree = "<group>"; };
+		B719A1B6262F65D700337783 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,8 +66,10 @@
 		B719A18A262F589E00337783 /* GameStock */ = {
 			isa = PBXGroup;
 			children = (
+				B719A1B5262F65A400337783 /* Data Model */,
+				B719A1AA262F64EE00337783 /* Start Views */,
+				B719A1A4262F63C200337783 /* Tab Bar Views */,
 				B719A1A3262F58B600337783 /* Delegates */,
-				B719A18F262F589E00337783 /* ContentView.swift */,
 				B719A194262F58A500337783 /* Assets.xcassets */,
 				B719A199262F58A500337783 /* LaunchScreen.storyboard */,
 				B719A19C262F58A500337783 /* Info.plist */,
@@ -84,6 +94,64 @@
 				B719A18D262F589E00337783 /* SceneDelegate.swift */,
 			);
 			path = Delegates;
+			sourceTree = "<group>";
+		};
+		B719A1A4262F63C200337783 /* Tab Bar Views */ = {
+			isa = PBXGroup;
+			children = (
+				B719A1A8262F63EB00337783 /* Search */,
+				B719A1A7262F63E200337783 /* Settings */,
+				B719A1A6262F63D500337783 /* Portfolio */,
+				B719A1A5262F63D000337783 /* Home */,
+			);
+			path = "Tab Bar Views";
+			sourceTree = "<group>";
+		};
+		B719A1A5262F63D000337783 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		B719A1A6262F63D500337783 /* Portfolio */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Portfolio;
+			sourceTree = "<group>";
+		};
+		B719A1A7262F63E200337783 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		B719A1A8262F63EB00337783 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
+		B719A1AA262F64EE00337783 /* Start Views */ = {
+			isa = PBXGroup;
+			children = (
+				B719A18F262F589E00337783 /* ContentView.swift */,
+				B719A1AB262F651100337783 /* LoginView.swift */,
+				B719A1AE262F652200337783 /* MainView.swift */,
+				B719A1B1262F653900337783 /* ForgotPassword.swift */,
+			);
+			path = "Start Views";
+			sourceTree = "<group>";
+		};
+		B719A1B5262F65A400337783 /* Data Model */ = {
+			isa = PBXGroup;
+			children = (
+				B719A1B6262F65D700337783 /* UserData.swift */,
+			);
+			path = "Data Model";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -157,8 +225,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				B719A193262F589E00337783 /* GameStock.xcdatamodeld in Sources */,
+				B719A1AF262F652200337783 /* MainView.swift in Sources */,
+				B719A1B7262F65D800337783 /* UserData.swift in Sources */,
 				B719A18C262F589E00337783 /* AppDelegate.swift in Sources */,
 				B719A18E262F589E00337783 /* SceneDelegate.swift in Sources */,
+				B719A1B2262F653900337783 /* ForgotPassword.swift in Sources */,
+				B719A1AC262F651100337783 /* LoginView.swift in Sources */,
 				B719A190262F589E00337783 /* ContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
