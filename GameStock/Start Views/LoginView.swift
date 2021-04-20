@@ -19,15 +19,15 @@ struct LoginView : View {
         let validPassword = UserDefaults.standard.string(forKey: "Password")
         NavigationView{
             ZStack {
-                Color.gray.opacity(0.1).edgesIgnoringSafeArea(.all)
+                Color.gray.opacity(0.25).edgesIgnoringSafeArea(.all)
             ScrollView(.vertical, showsIndicators: false) {
                 VStack {
-//                    Image("Welcome")
-//                        .padding(.top, 30)
-//
-                    Text("GameStock")
-                        .font(.headline)
-                        .padding()
+                    Image("GameStock")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(minWidth: 300, maxWidth: 600)
+                        .padding(.top, 30)
+
                    
 //                    Image("DataProtection")
 //                        .resizable()
