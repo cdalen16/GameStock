@@ -11,7 +11,6 @@ import Foundation
 struct MapDetails: Hashable, Codable, Identifiable {
     
     var id: UUID
-    var location: String
     var latitude: Double
     var longitude: Double
     
