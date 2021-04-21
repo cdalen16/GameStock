@@ -14,6 +14,7 @@ struct LoginView : View {
     @State private var enteredPassword = ""
     @State private var showInvalidPasswordAlert = false
     @State private var isUnlocked = false
+    @State private var passwordNotSet = false
     
    
     var body: some View {
@@ -58,7 +59,11 @@ struct LoginView : View {
                             .alert(isPresented: $showInvalidPasswordAlert, content: { self.invalidPasswordAlert })
                         
                             Button(action: {
-                                authenticate()
+                                if(validPassword != nil) {
+                                    authenticate()
+                                } else {
+                                    self.passwordNotSet = true
+                                }
                             }) {
                                 Image(systemName: "faceid")
                                     .resizable()
@@ -67,6 +72,8 @@ struct LoginView : View {
                                     .foregroundColor(.blue)
                             }
                             .padding(.leading, 80)
+                            .alert(isPresented: $passwordNotSet, content: { self.passwordNeedToBeSet })
+
                         } //End of HStack
                         .frame(width:350, height: 40, alignment: .leading)
                     
@@ -87,7 +94,15 @@ struct LoginView : View {
         }//End of NavView
         
     }   // End of var
-   
+
+    var passwordNeedToBeSet: Alert {
+        
+        Alert(title: Text("Password Not Set!"),
+              message: Text("Password need to be set to use Face ID!"),
+              dismissButton: .default(Text("OK")) )
+    }
+    
+    
     /*
      ------------------------------
      MARK: - Invalid Password Alert
