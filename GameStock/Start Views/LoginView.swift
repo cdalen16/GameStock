@@ -23,60 +23,68 @@ struct LoginView : View {
         NavigationView{
             ZStack {
                 Color(red: 227/255, green: 228/255, blue: 223/255).edgesIgnoringSafeArea(.all)
-            ScrollView(.vertical, showsIndicators: false) {
-                VStack {
-                    Image("GameStock")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(minWidth: 300, maxWidth: 600)
-                        .padding(.trailing, 30)
-//                        .padding(.top, 30)
+                
+                ScrollView(.vertical, showsIndicators: false) {
+                    VStack {
+                        Image("GameStock")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(minWidth: 300, maxWidth: 600)
+                            .padding(.trailing, 30)
                    
-                    SecureField("Password", text: $enteredPassword)
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
-                        .frame(width: 300, height: 36)
-                        .padding()
+                        SecureField("Enter your password", text: $enteredPassword)
+                            .textFieldStyle(RoundedBorderTextFieldStyle())
+                            .frame(width: 300, height: 36)
+                            .padding()
                     
-                    HStack {
-                        Button(action: {
-                           //checks if password has been set
-                            if validPassword == nil || self.enteredPassword == validPassword {
-                                userData.userAuthenticated = true
-                                self.showInvalidPasswordAlert = false
-                            } else {
-                                self.showInvalidPasswordAlert = true
-                            }
+                        HStack {
+                            Button(action: {
+                                //checks if password has been set
+                                if validPassword == nil || self.enteredPassword == validPassword {
+                                    userData.userAuthenticated = true
+                                    self.showInvalidPasswordAlert = false
+                                } else {
+                                    self.showInvalidPasswordAlert = true
+                                }
                            
-                        }) {
-                            Text("Login")
-                                .frame(width: 100, height: 36, alignment: .center)
-                                .background(
-                                    RoundedRectangle(cornerRadius: 16)
-                                        .strokeBorder(Color.black, lineWidth: 1)
-                                )
-                        }
-                        .alert(isPresented: $showInvalidPasswordAlert, content: { self.invalidPasswordAlert })
+                            }) {
+                                Text("Login")
+                                    .frame(width: 100, height: 36, alignment: .center)
+                                    .background(
+                                        RoundedRectangle(cornerRadius: 16)
+                                            .strokeBorder(Color.black, lineWidth: 1))
+                            }
+                            .padding(.leading, 50)
+                            .alert(isPresented: $showInvalidPasswordAlert, content: { self.invalidPasswordAlert })
                         
+                            Button(action: {
+                                authenticate()
+                            }) {
+                                Image(systemName: "faceid")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(width: 40)
+                                    .foregroundColor(.blue)
+                            }
+                            .padding(.leading, 80)
+                        } //End of HStack
+                        .frame(width:350, height: 40, alignment: .leading)
+                    
                         if (validPassword != nil) {
                             NavigationLink(destination: ForgotPassword()) {
                                 Text("Forgot Password")
-                                        .foregroundColor(.blue)
-                                        .frame(width: 175, height: 36, alignment: .center)
-                                        .background(
-                                            RoundedRectangle(cornerRadius: 16)
-                                            .strokeBorder(Color.black, lineWidth: 1))
-                            }
-                            .padding(.leading, 70)
+                                    .foregroundColor(.blue)
+                                    .frame(width: 175, height: 36, alignment: .center)
+                                    .background(
+                                        RoundedRectangle(cornerRadius: 16)
+                                        .strokeBorder(Color.black, lineWidth: 1))
+                        }
+                        .padding(.top, 100)
                         } //End of if
-                    } //End of HStack
-                    .frame(width:350, height: 40, alignment: .leading)
-                }   // End of VStack
-            }   // End of ScrollView
+                    }   // End of VStack
+                }   // End of ScrollView
             }   // End of ZStack
-            .onAppear(perform: {
-                authenticate()
-            })
-        }
+        }//End of NavView
         
     }   // End of var
    
