@@ -1,4 +1,30 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1" systemVersion="11A491" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="false" userDefinedModelVersionIdentifier="">
-    <elements/>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17709" systemVersion="20C69" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Company" representedClassName=".Company" syncable="YES">
+        <attribute name="companyName" optional="YES" attributeType="String"/>
+        <attribute name="hqLatitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="hqLongitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <relationship name="photo" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Photo" inverseName="company" inverseEntity="Photo"/>
+        <relationship name="stock" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Stock" inverseName="company" inverseEntity="Stock"/>
+    </entity>
+    <entity name="Photo" representedClassName=".Photo" syncable="YES">
+        <attribute name="photoImage" optional="YES" attributeType="Binary"/>
+        <relationship name="company" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Company" inverseName="photo" inverseEntity="Company"/>
+    </entity>
+    <entity name="Stock" representedClassName=".Stock" syncable="YES">
+        <attribute name="high" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="isMarketOpen" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="label" optional="YES" attributeType="String"/>
+        <attribute name="latestPrice" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="low" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="percentChange" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="primaryExchange" optional="YES" attributeType="String"/>
+        <attribute name="symbol" optional="YES" attributeType="String"/>
+        <relationship name="company" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Company" inverseName="stock" inverseEntity="Company"/>
+    </entity>
+    <elements>
+        <element name="Stock" positionX="-60.9453125" positionY="-20.021728515625" width="128" height="178"/>
+        <element name="Photo" positionX="26.0390625" positionY="-175.967529296875" width="128" height="73"/>
+        <element name="Company" positionX="222.95703125" positionY="4.99169921875" width="128" height="118"/>
+    </elements>
 </model>

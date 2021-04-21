@@ -21,6 +21,10 @@
 		B719A1BA262F691B00337783 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = B719A1B9262F691B00337783 /* Home.swift */; };
 		B719A1BD262F69F000337783 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = B719A1BC262F69F000337783 /* Settings.swift */; };
 		B719A1C0262F6A0800337783 /* QuestionList.swift in Sources */ = {isa = PBXBuildFile; fileRef = B719A1BF262F6A0800337783 /* QuestionList.swift */; };
+		B7E325B626309BD0008E683C /* IEXApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E325B526309BD0008E683C /* IEXApi.swift */; };
+		B7E325BA26309F97008E683C /* Stock.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E325B926309F97008E683C /* Stock.swift */; };
+		B7E325BE2630A00D008E683C /* Company.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E325BD2630A00D008E683C /* Company.swift */; };
+		B7E325C12630A049008E683C /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E325C02630A049008E683C /* Photo.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +44,10 @@
 		B719A1B9262F691B00337783 /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
 		B719A1BC262F69F000337783 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		B719A1BF262F6A0800337783 /* QuestionList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionList.swift; sourceTree = "<group>"; };
+		B7E325B526309BD0008E683C /* IEXApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IEXApi.swift; sourceTree = "<group>"; };
+		B7E325B926309F97008E683C /* Stock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stock.swift; sourceTree = "<group>"; };
+		B7E325BD2630A00D008E683C /* Company.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Company.swift; sourceTree = "<group>"; };
+		B7E325C02630A049008E683C /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +80,8 @@
 		B719A18A262F589E00337783 /* GameStock */ = {
 			isa = PBXGroup;
 			children = (
+				B7E325B826309F8D008E683C /* Core DB */,
+				B7E325B426309BC0008E683C /* API Data */,
 				B719A1B5262F65A400337783 /* Data Model */,
 				B719A1AA262F64EE00337783 /* Start Views */,
 				B719A1A4262F63C200337783 /* Tab Bar Views */,
@@ -163,6 +173,24 @@
 			path = "Data Model";
 			sourceTree = "<group>";
 		};
+		B7E325B426309BC0008E683C /* API Data */ = {
+			isa = PBXGroup;
+			children = (
+				B7E325B526309BD0008E683C /* IEXApi.swift */,
+			);
+			path = "API Data";
+			sourceTree = "<group>";
+		};
+		B7E325B826309F8D008E683C /* Core DB */ = {
+			isa = PBXGroup;
+			children = (
+				B7E325B926309F97008E683C /* Stock.swift */,
+				B7E325BD2630A00D008E683C /* Company.swift */,
+				B7E325C02630A049008E683C /* Photo.swift */,
+			);
+			path = "Core DB";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -238,13 +266,17 @@
 				B719A1AF262F652200337783 /* MainView.swift in Sources */,
 				B719A1B7262F65D800337783 /* UserData.swift in Sources */,
 				B719A18C262F589E00337783 /* AppDelegate.swift in Sources */,
+				B7E325BA26309F97008E683C /* Stock.swift in Sources */,
 				B719A1BD262F69F000337783 /* Settings.swift in Sources */,
 				B719A1BA262F691B00337783 /* Home.swift in Sources */,
 				B719A18E262F589E00337783 /* SceneDelegate.swift in Sources */,
 				B719A1B2262F653900337783 /* ForgotPassword.swift in Sources */,
+				B7E325C12630A049008E683C /* Photo.swift in Sources */,
 				B719A1C0262F6A0800337783 /* QuestionList.swift in Sources */,
 				B719A1AC262F651100337783 /* LoginView.swift in Sources */,
+				B7E325BE2630A00D008E683C /* Company.swift in Sources */,
 				B719A190262F589E00337783 /* ContentView.swift in Sources */,
+				B7E325B626309BD0008E683C /* IEXApi.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -388,6 +420,7 @@
 				DEVELOPMENT_TEAM = 86F6GNXV5Z;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = GameStock/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -409,6 +442,7 @@
 				DEVELOPMENT_TEAM = 86F6GNXV5Z;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = GameStock/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
