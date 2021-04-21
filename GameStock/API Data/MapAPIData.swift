@@ -54,23 +54,58 @@ func getLatLong(addressInput: String) -> [MapDetails] {
     
     do{
         
-        var location = "", lat = "", lon = ""
+        var location = "", lat = 0.0, lon = 0.0
         
         let jsonResponse = try JSONSerialization.jsonObject(with: jsonDataFromApi!,
                                                             options: JSONSerialization.ReadingOptions.mutableContainers)
         
-        var locationDataDictionary = Dictionary<String, Any>()
+        var jsonDataDictionary = Dictionary<String, Any>()
         
         if let jsonObject = jsonResponse as? [String: Any] {
-            locationDataDictionary = jsonObject
+            jsonDataDictionary = jsonObject
             
-            if let resultsDictionary = locationDataDictionary["results"] as? [Dictionary <String, Any>] {
-                locationDic = resultsDictionary
+            var resultsDic = jsonResponse as? [Dictionary <String, Any>]
+            if let resultsDictionary = jsonDataDictionary["results"] as? [Dictionary <String, Any>] {
+                resultsDic = resultsDictionary
+//                print(resultsDic)
                 
-                if let aDict = locationDic["locations"] as? [[Dictionary <String, Any>]]{
-                    print(locationDic)
+                var locDic = jsonResponse as? [String: Any]
+                if let locationDictionary = resultsDic![0] as? [String: Any] {
+                    locDic = locationDictionary
+//                    print(locDic)
+                    
+                    var lDic = jsonResponse as? [Dictionary <String, Any>]
+                    if let locsDictionary = locDic!["locations"] as? [Dictionary <String, Any>] {
+                        lDic = locsDictionary
+//                        print(lDic)
+                        
+                        var cDic = jsonResponse as? [String: Any]
+                        if let coordDictionary = lDic![0] as? [String: Any] {
+                            cDic = coordDictionary
+//                            print(cDic)
+                            
+                            var latlngDic = jsonResponse as? Dictionary <String, Any>
+                            if let latlngDictionary = cDic!["latLng"] as? Dictionary <String, Any> {
+                                latlngDic = latlngDictionary
+//                                print(latlngDic)
+                                
+                                var latitude = jsonResponse as? Double
+                                if let latnum = latlngDic!["lat"] as? Double {
+                                    latitude = latnum
+                                    lat = latitude as! Double
+                                    print(latitude)
+                                }
+                                var longitude = jsonResponse as? Double
+                                if let lngnum = latlngDic!["lng"] as? Double {
+                                    longitude = lngnum
+                                    lon = longitude as! Double
+                                    print(longitude)
+                                }
+                                
+                            }
+                        }
+                    }
                 }
-                
             }
             
         }
