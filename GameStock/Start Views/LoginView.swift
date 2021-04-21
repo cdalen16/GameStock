@@ -2,7 +2,7 @@
 //  Created by CS3714 on 3/14/21.
 //  Copyright © 2021 Campbell Dalen. All rights reserved.
 //
-
+import LocalAuthentication
 import SwiftUI
  
 struct LoginView : View {
@@ -13,27 +13,24 @@ struct LoginView : View {
     //user input
     @State private var enteredPassword = ""
     @State private var showInvalidPasswordAlert = false
+    @State private var isUnlocked = false
+    
    
     var body: some View {
         // Retrieve the password from the user’s defaults database under the key "Password"
         let validPassword = UserDefaults.standard.string(forKey: "Password")
+        
         NavigationView{
             ZStack {
-                Color.gray.opacity(0.25).edgesIgnoringSafeArea(.all)
+                Color(red: 227/255, green: 228/255, blue: 223/255).edgesIgnoringSafeArea(.all)
             ScrollView(.vertical, showsIndicators: false) {
                 VStack {
                     Image("GameStock")
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .frame(minWidth: 300, maxWidth: 600)
-                        .padding(.top, 30)
-
-                   
-//                    Image("DataProtection")
-//                        .resizable()
-//                        .aspectRatio(contentMode: .fit)
-//                        .frame(minWidth: 300, maxWidth: 600)
-//                        .padding()
+                        .padding(.trailing, 30)
+//                        .padding(.top, 30)
                    
                     SecureField("Password", text: $enteredPassword)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
@@ -76,6 +73,9 @@ struct LoginView : View {
                 }   // End of VStack
             }   // End of ScrollView
             }   // End of ZStack
+            .onAppear(perform: {
+                authenticate()
+            })
         }
         
     }   // End of var
@@ -91,6 +91,31 @@ struct LoginView : View {
               dismissButton: .default(Text("OK")) )
        
         // Tapping OK resets @State var showInvalidPasswordAlert to false.
+    }
+    
+    func authenticate() {
+        let context = LAContext()
+        var error: NSError?
+
+        // check whether biometric authentication is possible
+        if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error) {
+            // it's possible, so go ahead and use it
+            let reason = "We need to unlock your data."
+
+            context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: reason) { success, authenticationError in
+                // authentication has now completed
+                DispatchQueue.main.async {
+                    if success {
+                        self.isUnlocked = true
+                        self.userData.userAuthenticated = true
+                    } else {
+                        // there was a problem
+                    }
+                }
+            }
+        } else {
+            // no biometrics
+        }
     }
 }
  

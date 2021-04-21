@@ -191,6 +191,7 @@
 			attributes = {
 				LastSwiftUpdateCheck = 1240;
 				LastUpgradeCheck = 1240;
+				ORGANIZATIONNAME = GameStock;
 				TargetAttributes = {
 					B719A187262F589E00337783 = {
 						CreatedOnToolsVersion = 12.4;
