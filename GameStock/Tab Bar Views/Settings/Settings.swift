@@ -20,10 +20,51 @@ struct Settings: View {
     @State private var showPasswordSetAlert = false
     
     @State private var questionAnswer = ""
+    
+    @State private var depoAmount = 0.0
+    @State private var showDepoAlert = false
+    
+    
+    // Define formatter before it is used
+        let costFormatter: NumberFormatter = {
+            let numberFormatter = NumberFormatter()
+            numberFormatter.numberStyle = .decimal
+            numberFormatter.maximumFractionDigits = 2
+            numberFormatter.usesGroupingSeparator = true
+            numberFormatter.groupingSize = 3
+            return numberFormatter
+        }()
    
+    var amountDepoFormatter: Text {
+        let inAmount = self.depoAmount
+           
+            // Add thousand separators to trip cost
+            let numberFormatter = NumberFormatter()
+            numberFormatter.numberStyle = .decimal
+            numberFormatter.usesGroupingSeparator = true
+            numberFormatter.groupingSize = 3
+           
+            let amountString = "$" + numberFormatter.string(from: inAmount as NSNumber)!
+            return Text(amountString)
+        }
     var body: some View {
         NavigationView {
             Form {
+                
+                Section(header: Text("Deposit Funds")){
+                    HStack {
+                        TextField("Enter amount", value: $depoAmount, formatter: costFormatter)
+                                    .keyboardType(.numbersAndPunctuation)
+                        
+                        Button(action: {
+                            let currAmount = UserDefaults.standard.double(forKey: "balance")
+                            userData.userBalance = currAmount + self.depoAmount
+                            UserDefaults.standard.set(self.depoAmount + currAmount, forKey: "balance")
+                            showDepoAlert = true
+                        }) {
+                            Text("Deposit")
+                        }                    }
+                }//End of Section
                 Section(header: Text("Show / Hide Entered Values")){
                     Toggle(isOn: $showEnteredValues) {
                         Text("Show Entered Values")
@@ -143,6 +184,7 @@ struct Settings: View {
                     }
                     .frame(width:350, height: 40, alignment: .leading)
                 }//End of Section
+                .alert(isPresented: $showDepoAlert, content: { self.depoAlert})
                 
             }  // End of Form
             .navigationBarTitle(Text("Settings"), displayMode: .inline)
@@ -175,6 +217,19 @@ struct Settings: View {
         Alert(title: Text("Unmatched Password!"),
               message: Text("Two entries of the password must match!"),
               dismissButton: .default(Text("OK")))
+    }
+    
+    /*
+     --------------------------
+     MARK: - deposit alert
+     --------------------------
+     */
+    var depoAlert: Alert {
+        Alert(title: Text("Funds Deposited!"),
+              message: Text("The amount of \(amountDepoFormatter) has been deposited to your account."),
+              dismissButton: .default(Text("OK")) {
+                self.showDepoAlert = false
+              })
     }
 }
  

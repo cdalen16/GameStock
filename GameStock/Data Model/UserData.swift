@@ -36,6 +36,7 @@ final class UserData: ObservableObject {
     
     @Published var securityQ = "What is the name of the first boy or girl that you first kissed?"
     
+    @Published var userBalance = 0.0
     
     
     // Instance Variables for Voice Recording Duration Timer

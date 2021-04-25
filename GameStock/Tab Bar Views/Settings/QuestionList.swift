@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-let questions = ["In what city or town did your mother and father meet?", "In what city or town were you born?", "What did you want to be when you grew up?","What do you remember most from your childhood?", "What is the name of the first boy or girl that you first kissed?", "What is the name of the first school you attended?", "What is the name of your favorite childhood friend?", "What is the name of your first pet?", "What is your mother's maiden name?", "What was your favorite place to visit as a child?"]
+let questions = ["In what city or town were you born?", "What did you want to be when you grew up?", "What is the name of the first school you attended?", "What is the name of your favorite childhood friend?", "What is the name of your first pet?", "What is your mother's maiden name?"]
 
 struct QuestionList: View {
     @EnvironmentObject var userData: UserData
