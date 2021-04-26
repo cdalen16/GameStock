@@ -25,11 +25,11 @@ struct MainView: View {
 //                    Image(systemName: "rectangle.stack.person.crop")
 //                    Text("Contacts")
 //                }
-//            AccountsList()
-//                .tabItem {
-//                    Image(systemName: "key.icloud")
-//                    Text("Accounts")
-//                }
+            SearchCompany()
+                .tabItem {
+                    Image(systemName: "key.icloud")
+                    Text("Search")
+                }
             Settings()
                 .tabItem {
                     Image(systemName: "gear")

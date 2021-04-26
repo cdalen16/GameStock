@@ -26,6 +26,9 @@
 		B719A1C0262F6A0800337783 /* QuestionList.swift in Sources */ = {isa = PBXBuildFile; fileRef = B719A1BF262F6A0800337783 /* QuestionList.swift */; };
 		B719A1C8263641C300337783 /* StockItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B719A1C7263641C300337783 /* StockItem.swift */; };
 		B719A1CB2636430300337783 /* StockStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = B719A1CA2636430300337783 /* StockStruct.swift */; };
+		B719A1CF2636495700337783 /* SearchCompany.swift in Sources */ = {isa = PBXBuildFile; fileRef = B719A1CE2636495700337783 /* SearchCompany.swift */; };
+		B719A1D22636499400337783 /* NavigationStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = B719A1D12636499400337783 /* NavigationStyle.swift */; };
+		B719A1D5263649FC00337783 /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = B719A1D4263649FC00337783 /* SearchResult.swift */; };
 		B7E325B626309BD0008E683C /* IEXApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E325B526309BD0008E683C /* IEXApi.swift */; };
 		B7E325BA26309F97008E683C /* Stock.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E325B926309F97008E683C /* Stock.swift */; };
 		B7E325BE2630A00D008E683C /* Company.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E325BD2630A00D008E683C /* Company.swift */; };
@@ -55,6 +58,9 @@
 		B719A1BF262F6A0800337783 /* QuestionList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionList.swift; sourceTree = "<group>"; };
 		B719A1C7263641C300337783 /* StockItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockItem.swift; sourceTree = "<group>"; };
 		B719A1CA2636430300337783 /* StockStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockStruct.swift; sourceTree = "<group>"; };
+		B719A1CE2636495700337783 /* SearchCompany.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCompany.swift; sourceTree = "<group>"; };
+		B719A1D12636499400337783 /* NavigationStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationStyle.swift; sourceTree = "<group>"; };
+		B719A1D4263649FC00337783 /* SearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResult.swift; sourceTree = "<group>"; };
 		B7E325B526309BD0008E683C /* IEXApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IEXApi.swift; sourceTree = "<group>"; };
 		B7E325B926309F97008E683C /* Stock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stock.swift; sourceTree = "<group>"; };
 		B7E325BD2630A00D008E683C /* Company.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Company.swift; sourceTree = "<group>"; };
@@ -165,6 +171,8 @@
 			isa = PBXGroup;
 			children = (
 				B719A1C7263641C300337783 /* StockItem.swift */,
+				B719A1CE2636495700337783 /* SearchCompany.swift */,
+				B719A1D4263649FC00337783 /* SearchResult.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -213,6 +221,7 @@
 			isa = PBXGroup;
 			children = (
 				B7E325C526363BDD008E683C /* UtilityFunctions.swift */,
+				B719A1D12636499400337783 /* NavigationStyle.swift */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -298,9 +307,11 @@
 				B719A1BA262F691B00337783 /* Home.swift in Sources */,
 				B719A18E262F589E00337783 /* SceneDelegate.swift in Sources */,
 				B719A1B2262F653900337783 /* ForgotPassword.swift in Sources */,
+				B719A1D5263649FC00337783 /* SearchResult.swift in Sources */,
 				B7E325C626363BDD008E683C /* UtilityFunctions.swift in Sources */,
 				B7E325C12630A049008E683C /* Photo.swift in Sources */,
 				B719A1C0262F6A0800337783 /* QuestionList.swift in Sources */,
+				B719A1CF2636495700337783 /* SearchCompany.swift in Sources */,
 				B719A1C8263641C300337783 /* StockItem.swift in Sources */,
 				B719A1AC262F651100337783 /* LoginView.swift in Sources */,
 				6BEA7EE32630AAF20005F18E /* PortfolioDetails.swift in Sources */,
@@ -308,6 +319,7 @@
 				6BEA7EDB2630AAAA0005F18E /* MapAPIData.swift in Sources */,
 				B719A190262F589E00337783 /* ContentView.swift in Sources */,
 				B719A1CB2636430300337783 /* StockStruct.swift in Sources */,
+				B719A1D22636499400337783 /* NavigationStyle.swift in Sources */,
 				B7E325B626309BD0008E683C /* IEXApi.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
