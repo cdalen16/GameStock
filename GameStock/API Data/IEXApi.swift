@@ -91,6 +91,8 @@ func apiGetStockData(stockSymbol: String) -> StockStruct {
         var hqLatitude = 0.0
         var hqLongitude = 0.0
         var logoUrl = ""
+        var state = ""
+        var city = ""
 
         if let dataMain = jsonResponseMain as? [String : Any] {
             if let newHigh = dataMain["high"] {
@@ -137,14 +139,21 @@ func apiGetStockData(stockSymbol: String) -> StockStruct {
                     if let newAddress = dataCompany["address"] {
                         address = newAddress as? String ?? ""
                     }
+                    if let newState = dataCompany["state"] {
+                        state = newState as? String ?? ""
+                    }
+                    if let newCity = dataCompany["city"] {
+                        city = newCity as? String ?? ""
+                    }
                     if let newCompanyName = dataCompany["companyName"] {
                         companyName = newCompanyName as? String ?? ""
                     }
                 }
                 if address != "" {
-                    let mapDetails = getLatLong(addressInput: address)
+                    let mapDetails = getLatLong(addressInput: "\(address),\(city),\(state)")
                     hqLatitude = mapDetails[0].latitude
                     hqLongitude = mapDetails[0].longitude
+                    
                 }
                 
                

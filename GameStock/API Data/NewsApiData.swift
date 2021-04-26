@@ -34,7 +34,8 @@ func getNews(search: String) -> [NewsStruct] {
     if search.isEmpty {
         apiUrl = "https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=\(newsAPIToken)"
     } else {
-        apiUrl = "https://newsapi.org/v2/everything?qInTitle=\(search)&language=en&sortBy=popularity&apiKey=\(newsAPIToken)"
+        let searchFixed = search.replacingOccurrences(of: " ", with: "%20")
+        apiUrl = "https://newsapi.org/v2/everything?qInTitle=\(searchFixed)&language=en&sortBy=popularity&apiKey=\(newsAPIToken)"
     }
     
     var newsSearch = [NewsStruct]()

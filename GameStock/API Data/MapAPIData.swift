@@ -42,9 +42,8 @@ func getLatLong(addressInput: String) -> [MapDetails] {
         
     var searchResults = [MapDetails]()
     
-    let apiQueryUrlString = "http://www.mapquestapi.com/geocoding/v1/address?key=mm26MMKcoLqlS7TkRTPprfPvduyvw09d&location=\(addressInput)"
-    
-    let apiQueryUrlStringFixed = apiQueryUrlString.replacingOccurrences(of: " ", with: "%20")
+    let apiQueryUrlString = "http://www.mapquestapi.com/geocoding/v1/address?key=mm26MMKcoLqlS7TkRTPprfPvduyvw09d&location=\(addressInput)&maxResults=1"
+    let apiQueryUrlStringFixed = apiQueryUrlString.replacingOccurrences(of: " ", with: "+")
     
     let jsonDataFromApi = getJsonDataFromApi(apiUrl: apiQueryUrlStringFixed)
     
