@@ -18,7 +18,24 @@ var newNews = [NewsStruct]()
 
 func getNews(search: String) -> [NewsStruct] {
     
-    let apiUrl = "https://newsapi.org/v2/everything?q=\(search)&apiKey=\(newsAPIToken)"
+//    let apiUrl = "https://newsapi.org/v2/everything?q=\(search)&apiKey=\(newsAPIToken)"
+    let nDatee = Calendar.current.date(byAdding: .day, value: -30, to: Date())!
+     
+    // Create an instance of DateFormatter
+    let dateFormatter = DateFormatter()
+     
+    // Set the date format to yyyy-MM-dd
+    dateFormatter.dateFormat = "yyyy-MM-dd"
+     
+    // Format dateAndTime under the dateFormatter and convert it to String
+    let startDate = dateFormatter.string(from: nDatee)
+    
+    var apiUrl = ""
+    if search.isEmpty {
+        apiUrl = "https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=\(newsAPIToken)"
+    } else {
+        apiUrl = "https://newsapi.org/v2/top-headlines?q=\(search)&category=business&apiKey=\(newsAPIToken)"
+    }
     
     var newsSearch = [NewsStruct]()
     
