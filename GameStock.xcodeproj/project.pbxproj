@@ -33,6 +33,8 @@
 		B719A1D5263649FC00337783 /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = B719A1D4263649FC00337783 /* SearchResult.swift */; };
 		B719A20A2636616200337783 /* NewsApiData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B719A2092636616200337783 /* NewsApiData.swift */; };
 		B719A20D2636649E00337783 /* NewsStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = B719A20C2636649E00337783 /* NewsStruct.swift */; };
+		B719A2112636668F00337783 /* NewsItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B719A2102636668F00337783 /* NewsItem.swift */; };
+		B719A2152636686D00337783 /* NewsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = B719A2142636686D00337783 /* NewsList.swift */; };
 		B7E325B626309BD0008E683C /* IEXApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E325B526309BD0008E683C /* IEXApi.swift */; };
 		B7E325BA26309F97008E683C /* Stock.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E325B926309F97008E683C /* Stock.swift */; };
 		B7E325BE2630A00D008E683C /* Company.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E325BD2630A00D008E683C /* Company.swift */; };
@@ -69,6 +71,8 @@
 		B719A1D4263649FC00337783 /* SearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResult.swift; sourceTree = "<group>"; };
 		B719A2092636616200337783 /* NewsApiData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsApiData.swift; sourceTree = "<group>"; };
 		B719A20C2636649E00337783 /* NewsStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsStruct.swift; sourceTree = "<group>"; };
+		B719A2102636668F00337783 /* NewsItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsItem.swift; sourceTree = "<group>"; };
+		B719A2142636686D00337783 /* NewsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsList.swift; sourceTree = "<group>"; };
 		B7E325B526309BD0008E683C /* IEXApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IEXApi.swift; sourceTree = "<group>"; };
 		B7E325B926309F97008E683C /* Stock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stock.swift; sourceTree = "<group>"; };
 		B7E325BD2630A00D008E683C /* Company.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Company.swift; sourceTree = "<group>"; };
@@ -212,6 +216,8 @@
 		B719A20F2636662400337783 /* News */ = {
 			isa = PBXGroup;
 			children = (
+				B719A2102636668F00337783 /* NewsItem.swift */,
+				B719A2142636686D00337783 /* NewsList.swift */,
 			);
 			path = News;
 			sourceTree = "<group>";
@@ -322,6 +328,8 @@
 				B719A1AF262F652200337783 /* MainView.swift in Sources */,
 				B719A1B7262F65D800337783 /* UserData.swift in Sources */,
 				B719A18C262F589E00337783 /* AppDelegate.swift in Sources */,
+				B719A2112636668F00337783 /* NewsItem.swift in Sources */,
+				B719A2152636686D00337783 /* NewsList.swift in Sources */,
 				B7E325BA26309F97008E683C /* Stock.swift in Sources */,
 				6BEA7EE62630AB690005F18E /* MapDataStruct.swift in Sources */,
 				B719A1BD262F69F000337783 /* Settings.swift in Sources */,

@@ -20,11 +20,11 @@ struct MainView: View {
 //                    Image(systemName: "list.bullet")
 //                    Text("To Do")
 //                }
-//            ContactsList()
-//                .tabItem {
-//                    Image(systemName: "rectangle.stack.person.crop")
-//                    Text("Contacts")
-//                }
+            NewsList(results: getNews(search: "tesla"))
+                .tabItem {
+                    Image(systemName: "rectangle.stack.person.crop")
+                    Text("News")
+                }
             SearchCompany()
                 .tabItem {
                     Image(systemName: "key.icloud")
