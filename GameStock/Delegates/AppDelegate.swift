@@ -16,8 +16,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         getHomeStocks()
-        getLatLong(addressInput: "1256 Candlewood Ct")
-        getNews(search: "tesla")
+//        getLatLong(addressInput: "1256 Candlewood Ct")
+//        getNews(search: "stock")
         return true
     }
 

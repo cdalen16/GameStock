@@ -13,6 +13,7 @@ struct NewsItem: View {
     let news: NewsStruct
     
     var body: some View {
+
         HStack {
             getImageFromUrl(url: news.imageUrl, defaultFilename: "")
                 .resizable()

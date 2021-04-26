@@ -9,15 +9,30 @@
 import SwiftUI
 
 struct NewsList: View {
-    let results: [NewsStruct]
+    
+    @EnvironmentObject var userData: UserData
+//    let results: [NewsStruct]
+    @State private var searchItem = ""
     
     var body: some View {
+        
+//        var searchResults = [NewsStruct]()
+        
         NavigationView {
-            List {
-                ForEach(results) { item in
-                    NewsItem(news: item)
+            VStack {
+                SearchBar(searchItem: $searchItem, placeholder: "Search Companies")
+                Button(action: {
+                    userData.newsSearchResults = getNews(search: searchItem)
+                }) {
+                    Text("Search")
                 }
-            }//End of list
+                List {
+                    ForEach(userData.newsSearchResults) { item in
+                        NewsItem(news: item)
+                    }
+                }//End of list
+            }
+            
         }//End of navview
         .customNavigationViewStyle()
     }
@@ -25,6 +40,6 @@ struct NewsList: View {
 
 struct NewsList_Previews: PreviewProvider {
     static var previews: some View {
-        NewsList(results: getNews(search: "tesla"))
+        NewsList()
     }
 }

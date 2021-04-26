@@ -35,6 +35,8 @@
 		B719A20D2636649E00337783 /* NewsStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = B719A20C2636649E00337783 /* NewsStruct.swift */; };
 		B719A2112636668F00337783 /* NewsItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B719A2102636668F00337783 /* NewsItem.swift */; };
 		B719A2152636686D00337783 /* NewsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = B719A2142636686D00337783 /* NewsList.swift */; };
+		B719A2182636FEDE00337783 /* NewsDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = B719A2172636FEDE00337783 /* NewsDetails.swift */; };
+		B719A21B2636FFA100337783 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B719A21A2636FFA100337783 /* SearchBar.swift */; };
 		B7E325B626309BD0008E683C /* IEXApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E325B526309BD0008E683C /* IEXApi.swift */; };
 		B7E325BA26309F97008E683C /* Stock.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E325B926309F97008E683C /* Stock.swift */; };
 		B7E325BE2630A00D008E683C /* Company.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E325BD2630A00D008E683C /* Company.swift */; };
@@ -73,6 +75,8 @@
 		B719A20C2636649E00337783 /* NewsStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsStruct.swift; sourceTree = "<group>"; };
 		B719A2102636668F00337783 /* NewsItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsItem.swift; sourceTree = "<group>"; };
 		B719A2142636686D00337783 /* NewsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsList.swift; sourceTree = "<group>"; };
+		B719A2172636FEDE00337783 /* NewsDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsDetails.swift; sourceTree = "<group>"; };
+		B719A21A2636FFA100337783 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		B7E325B526309BD0008E683C /* IEXApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IEXApi.swift; sourceTree = "<group>"; };
 		B7E325B926309F97008E683C /* Stock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stock.swift; sourceTree = "<group>"; };
 		B7E325BD2630A00D008E683C /* Company.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Company.swift; sourceTree = "<group>"; };
@@ -218,6 +222,7 @@
 			children = (
 				B719A2102636668F00337783 /* NewsItem.swift */,
 				B719A2142636686D00337783 /* NewsList.swift */,
+				B719A2172636FEDE00337783 /* NewsDetails.swift */,
 			);
 			path = News;
 			sourceTree = "<group>";
@@ -248,6 +253,7 @@
 				B7E325C526363BDD008E683C /* UtilityFunctions.swift */,
 				B719A1D12636499400337783 /* NavigationStyle.swift */,
 				6B304A4A263655DB00F52419 /* MapView.swift */,
+				B719A21A2636FFA100337783 /* SearchBar.swift */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -335,6 +341,7 @@
 				B719A1BD262F69F000337783 /* Settings.swift in Sources */,
 				B719A1BA262F691B00337783 /* Home.swift in Sources */,
 				B719A20D2636649E00337783 /* NewsStruct.swift in Sources */,
+				B719A2182636FEDE00337783 /* NewsDetails.swift in Sources */,
 				B719A18E262F589E00337783 /* SceneDelegate.swift in Sources */,
 				B719A1B2262F653900337783 /* ForgotPassword.swift in Sources */,
 				B719A1D5263649FC00337783 /* SearchResult.swift in Sources */,
@@ -343,6 +350,7 @@
 				B719A1C0262F6A0800337783 /* QuestionList.swift in Sources */,
 				B719A1CF2636495700337783 /* SearchCompany.swift in Sources */,
 				B719A1C8263641C300337783 /* StockItem.swift in Sources */,
+				B719A21B2636FFA100337783 /* SearchBar.swift in Sources */,
 				B719A1AC262F651100337783 /* LoginView.swift in Sources */,
 				6B304A4B263655DB00F52419 /* MapView.swift in Sources */,
 				6BEA7EE32630AAF20005F18E /* PortfolioDetails.swift in Sources */,

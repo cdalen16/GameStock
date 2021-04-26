@@ -38,6 +38,7 @@ final class UserData: ObservableObject {
     
     @Published var userBalance = 0.0
     
+    @Published var newsSearchResults = getNews(search: "stock")
     
     // Instance Variables for Voice Recording Duration Timer
     var durationTimer = Timer()

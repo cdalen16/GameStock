@@ -16,7 +16,7 @@ var newsAPIToken = "b8d98a99b78d46e1a9ac83b45ed75125"
 
 var newNews = [NewsStruct]()
 
-func getNews(search: String) -> [NewsStruct]{
+func getNews(search: String) -> [NewsStruct] {
     
     let apiUrl = "https://newsapi.org/v2/everything?q=\(search)&apiKey=\(newsAPIToken)"
     
