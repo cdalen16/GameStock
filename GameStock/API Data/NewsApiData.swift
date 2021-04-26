@@ -12,29 +12,29 @@ import CoreData
 
 import Foundation
 
-var newsAPIToken = "b8d98a99b78d46e1a9ac83b45ed75125"
+var newsAPIToken = "0a4cc5d87e344b1f96f3151210b07c81"
 
 var newNews = [NewsStruct]()
 
 func getNews(search: String) -> [NewsStruct] {
     
-//    let apiUrl = "https://newsapi.org/v2/everything?q=\(search)&apiKey=\(newsAPIToken)"
-    let nDatee = Calendar.current.date(byAdding: .day, value: -30, to: Date())!
-     
-    // Create an instance of DateFormatter
-    let dateFormatter = DateFormatter()
-     
-    // Set the date format to yyyy-MM-dd
-    dateFormatter.dateFormat = "yyyy-MM-dd"
-     
-    // Format dateAndTime under the dateFormatter and convert it to String
-    let startDate = dateFormatter.string(from: nDatee)
+////    let apiUrl = "https://newsapi.org/v2/everything?q=\(search)&apiKey=\(newsAPIToken)"
+//    let nDatee = Calendar.current.date(byAdding: .day, value: -30, to: Date())!
+//
+//    // Create an instance of DateFormatter
+//    let dateFormatter = DateFormatter()
+//
+//    // Set the date format to yyyy-MM-dd
+//    dateFormatter.dateFormat = "yyyy-MM-dd"
+//
+//    // Format dateAndTime under the dateFormatter and convert it to String
+//    let startDate = dateFormatter.string(from: nDatee)
     
     var apiUrl = ""
     if search.isEmpty {
         apiUrl = "https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=\(newsAPIToken)"
     } else {
-        apiUrl = "https://newsapi.org/v2/top-headlines?q=\(search)&category=business&apiKey=\(newsAPIToken)"
+        apiUrl = "https://newsapi.org/v2/everything?qInTitle=\(search)&language=en&sortBy=popularity&apiKey=\(newsAPIToken)"
     }
     
     var newsSearch = [NewsStruct]()
@@ -48,7 +48,7 @@ func getNews(search: String) -> [NewsStruct] {
         let jsonResponse = try JSONSerialization.jsonObject(with: jsonDataFromApi!,
                                                             options: JSONSerialization.ReadingOptions.mutableContainers)
         
-        var newsContent = "", newsTitle = "" , newsDate = Date(), newsAuthor = "", newsUrl = "", newsImageUrl = ""
+        var newsContent = "", newsTitle = "" , newsDate = "", newsAuthor = "", newsUrl = "", newsImageUrl = ""
         
         if let data = jsonResponse as? [String : Any] {
             
@@ -62,8 +62,9 @@ func getNews(search: String) -> [NewsStruct] {
                     if let tit = story["title"] as? String {
                         newsTitle = tit
                     }
-                    if let pub = story["publishedAt"] as? Date {
+                    if let pub = story["publishedAt"] as? String {
                         newsDate = pub
+                        print(newsDate)
                     }
                     if let aut = story["author"] as? String {
                         newsAuthor = aut

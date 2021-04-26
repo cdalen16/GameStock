@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         getHomeStocks()
         //getLatLong(addressInput: "1256 Candlewood Ct")
         //getNews(search: "tesla")
-        apiGetStockChart(stockSymbol: "twtr", Duration: "1m")
+//        apiGetStockChart(stockSymbol: "twtr", Duration: "1m")
         return true
     }
 

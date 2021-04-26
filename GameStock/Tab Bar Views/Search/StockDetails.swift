@@ -48,7 +48,7 @@ struct StockDetails: View {
                         .imageScale(.medium)
                         .font(Font.title.weight(.regular))
                         .foregroundColor(.blue)
-                    Text("Show Trip Photo Location on Map")
+                    Text("Show Company Location on Map")
                         .font(.system(size: 16))
                 }
                 .frame(minWidth: 300, maxWidth: 500, alignment: .leading)
@@ -72,7 +72,7 @@ struct StockDetails: View {
     func getDoubleArrayForChart(Symbol: String) -> [Double] {
         var arrayResults = [Double]()
         
-        var dataArray = apiGetStockChart(stockSymbol: Symbol, Duration: "1m")
+        let dataArray = apiGetStockChart(stockSymbol: Symbol, Duration: "1m")
                 
 
         
@@ -97,7 +97,7 @@ struct StockDetails: View {
         let title = stockDet.name
         
         return AnyView(MapView(mapType: mapType, latitude: lat, longitude: longt, delta: 10.0, deltaUnit: "degrees", annotationTitle: title, annotationSubtitle: ""))
-            .navigationBarTitle(Text(title ?? ""), displayMode: .inline)
+            .navigationBarTitle(Text(title ), displayMode: .inline)
             .edgesIgnoringSafeArea(.all)
         
         
