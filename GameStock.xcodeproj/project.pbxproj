@@ -31,6 +31,8 @@
 		B719A1CF2636495700337783 /* SearchCompany.swift in Sources */ = {isa = PBXBuildFile; fileRef = B719A1CE2636495700337783 /* SearchCompany.swift */; };
 		B719A1D22636499400337783 /* NavigationStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = B719A1D12636499400337783 /* NavigationStyle.swift */; };
 		B719A1D5263649FC00337783 /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = B719A1D4263649FC00337783 /* SearchResult.swift */; };
+		B719A20A2636616200337783 /* NewsApiData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B719A2092636616200337783 /* NewsApiData.swift */; };
+		B719A20D2636649E00337783 /* NewsStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = B719A20C2636649E00337783 /* NewsStruct.swift */; };
 		B7E325B626309BD0008E683C /* IEXApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E325B526309BD0008E683C /* IEXApi.swift */; };
 		B7E325BA26309F97008E683C /* Stock.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E325B926309F97008E683C /* Stock.swift */; };
 		B7E325BE2630A00D008E683C /* Company.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E325BD2630A00D008E683C /* Company.swift */; };
@@ -65,6 +67,8 @@
 		B719A1CE2636495700337783 /* SearchCompany.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCompany.swift; sourceTree = "<group>"; };
 		B719A1D12636499400337783 /* NavigationStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationStyle.swift; sourceTree = "<group>"; };
 		B719A1D4263649FC00337783 /* SearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResult.swift; sourceTree = "<group>"; };
+		B719A2092636616200337783 /* NewsApiData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsApiData.swift; sourceTree = "<group>"; };
+		B719A20C2636649E00337783 /* NewsStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsStruct.swift; sourceTree = "<group>"; };
 		B7E325B526309BD0008E683C /* IEXApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IEXApi.swift; sourceTree = "<group>"; };
 		B7E325B926309F97008E683C /* Stock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stock.swift; sourceTree = "<group>"; };
 		B7E325BD2630A00D008E683C /* Company.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Company.swift; sourceTree = "<group>"; };
@@ -146,6 +150,7 @@
 		B719A1A4262F63C200337783 /* Tab Bar Views */ = {
 			isa = PBXGroup;
 			children = (
+				B719A20F2636662400337783 /* News */,
 				6BEA7EE12630AAF20005F18E /* Portfolio */,
 				B719A1A8262F63EB00337783 /* Search */,
 				B719A1A7262F63E200337783 /* Settings */,
@@ -199,8 +204,16 @@
 				6BEA7EE52630AB690005F18E /* MapDataStruct.swift */,
 				B719A1B6262F65D700337783 /* UserData.swift */,
 				B719A1CA2636430300337783 /* StockStruct.swift */,
+				B719A20C2636649E00337783 /* NewsStruct.swift */,
 			);
 			path = "Data Model";
+			sourceTree = "<group>";
+		};
+		B719A20F2636662400337783 /* News */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = News;
 			sourceTree = "<group>";
 		};
 		B7E325B426309BC0008E683C /* API Data */ = {
@@ -208,6 +221,7 @@
 			children = (
 				6BEA7EDA2630AAAA0005F18E /* MapAPIData.swift */,
 				B7E325B526309BD0008E683C /* IEXApi.swift */,
+				B719A2092636616200337783 /* NewsApiData.swift */,
 			);
 			path = "API Data";
 			sourceTree = "<group>";
@@ -304,6 +318,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B719A193262F589E00337783 /* GameStock.xcdatamodeld in Sources */,
+				B719A20A2636616200337783 /* NewsApiData.swift in Sources */,
 				B719A1AF262F652200337783 /* MainView.swift in Sources */,
 				B719A1B7262F65D800337783 /* UserData.swift in Sources */,
 				B719A18C262F589E00337783 /* AppDelegate.swift in Sources */,
@@ -311,6 +326,7 @@
 				6BEA7EE62630AB690005F18E /* MapDataStruct.swift in Sources */,
 				B719A1BD262F69F000337783 /* Settings.swift in Sources */,
 				B719A1BA262F691B00337783 /* Home.swift in Sources */,
+				B719A20D2636649E00337783 /* NewsStruct.swift in Sources */,
 				B719A18E262F589E00337783 /* SceneDelegate.swift in Sources */,
 				B719A1B2262F653900337783 /* ForgotPassword.swift in Sources */,
 				B719A1D5263649FC00337783 /* SearchResult.swift in Sources */,

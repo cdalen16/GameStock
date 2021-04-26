@@ -17,6 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         getHomeStocks()
         getLatLong(addressInput: "1256 Candlewood Ct")
+        getNews(search: "tesla")
         return true
     }
 

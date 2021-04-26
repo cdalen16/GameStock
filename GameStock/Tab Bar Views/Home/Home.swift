@@ -27,7 +27,9 @@ struct Home: View {
         NavigationView {
             List {
                 ForEach(homeStocks) { aStock in
+                    NavigationLink(destination: StockDetails(stockDet: aStock)){
                         StockItem(stock: aStock)
+                    }
                 }
             }   // End of List
             .navigationBarTitle(Text("Hot Stocks"), displayMode: .inline)
