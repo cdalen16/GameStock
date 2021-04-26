@@ -9,13 +9,19 @@
 import SwiftUI
 
 struct NewsDetails: View {
+    let news: NewsStruct
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Form {
+            Section {
+                
+            }
+        }
     }
 }
 
 struct NewsDetails_Previews: PreviewProvider {
     static var previews: some View {
-        NewsDetails()
+        NewsDetails(news: newNews[0])
     }
 }

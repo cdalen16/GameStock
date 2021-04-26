@@ -187,7 +187,7 @@ struct Settings: View {
                 .alert(isPresented: $showDepoAlert, content: { self.depoAlert})
                 
             }  // End of Form
-            .navigationBarTitle(Text("Settings"), displayMode: .inline)
+            .navigationBarTitle(Text("Settings"), displayMode: .large)
             .alert(isPresented: $showPasswordSetAlert, content: { self.passwordSetAlert })
         }//End of Nav View
         .alert(isPresented: $showUnmatchedPasswordAlert, content: { self.unmatchedPasswordAlert })

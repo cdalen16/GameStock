@@ -32,8 +32,9 @@ struct Home: View {
                     }
                 }
             }   // End of List
-            .navigationBarTitle(Text("Hot Stocks"), displayMode: .inline)
-        } .customNavigationViewStyle() // End of NavigationView
+            .navigationBarTitle(Text("Hot Stocks"), displayMode: .large)
+        }// End of NavigationView
+        .customNavigationViewStyle()
     }   // End of body
 }
 

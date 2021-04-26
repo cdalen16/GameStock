@@ -27,8 +27,6 @@ struct SearchBar: UIViewRepresentable {
      
         func searchBar(_ searchBar: UISearchBar, textDidChange searchString: String) {
             searchText = searchString
-            print(searchText)
-//            getNews(search: searchText)
             searchBar.showsCancelButton = true
         }
        

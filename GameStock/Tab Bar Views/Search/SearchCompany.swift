@@ -16,94 +16,37 @@ struct SearchCompany: View {
     
     var body: some View {
         NavigationView {
-            Form {
-                Section(header:
-                    Text("Enter Company Stock Symbol to Search")
-                        .padding(.top, 100)   // Put padding here to preserve form's background color
-                ) {
-                    HStack {
-                        TextField("Enter Stock Symbol", text: $searchFieldValue)
-                            .textFieldStyle(RoundedBorderTextFieldStyle())
-                            .autocapitalization(.allCharacters)
-                            .disableAutocorrection(true)
-                            .frame(width: 240, height: 36)
-                        
-                        // Button to clear the text field
-                        Button(action: {
-                            self.searchFieldValue = ""
-                            self.showSearchFieldEmptyAlert = false
-                            self.searchCompleted = false
-                        }) {
-                            Image(systemName: "clear")
-                                .imageScale(.medium)
-                                .font(Font.title.weight(.regular))
-                        }
-                            .alert(isPresented: $showSearchFieldEmptyAlert, content: { self.searchFieldEmptyAlert })
-                        
-                    }   // End of HStack
-                        .padding(.horizontal)
-                }
-                Section(header: Text("Search Company")) {
-                    HStack {
-                        Button(action: {
-                            // Remove spaces, if any, at the beginning and at the end of the entered search query string
-                            let queryTrimmed = self.searchFieldValue.trimmingCharacters(in: .whitespacesAndNewlines)
+            VStack {
+                SearchBar(searchItem: $searchFieldValue, placeholder: "Search Companies")
                             
-                            if (queryTrimmed.isEmpty) {
-                                self.showSearchFieldEmptyAlert = true
-                            } else {
-                                self.searchApi()
-                                self.searchCompleted = true
-                            }
-                        }) {
-                            Text(self.searchCompleted ? "Search Completed" : "Search")
+//                    .padding(.horizontal)
+//                    .padding(.bottom, 50)
+                
+                if apiGetStockData(stockSymbol: searchFieldValue).latestPrice != 0.0 {
+                    List {
+                        NavigationLink(destination: StockDetails(stockDet: apiGetStockData(stockSymbol: searchFieldValue))) {
+                            StockItem(stock: apiGetStockData(stockSymbol: searchFieldValue))
                         }
-                            .frame(width: 240, height: 36, alignment: .center)
-                            .background(
-                                RoundedRectangle(cornerRadius: 16)
-                                    .strokeBorder(Color.black, lineWidth: 1)
-                            )
-                    }   // End of HStack
-                        .padding(.horizontal)
-                }
-                if searchCompleted {
-                    Section(header: Text("Show Company Details")) {
-                        NavigationLink(destination: showSearchResults) {
-                            HStack {
-                                Image(systemName: "list.bullet")
-                                    .imageScale(.medium)
-                                    .font(Font.title.weight(.regular))
-                                    .foregroundColor(.blue)
-                                Text("Show Company Details")
-                                    .font(.system(size: 16))
-                            }
-                        }
-                    }
+                    }//End of List
+                } else if searchFieldValue.isEmpty {
+                    List {
+                        Text("Please enter a search")
+                    }//End of List
+                } else {
+                    List {
+                        Text("No company found")
+                    }//End of List
                 }
                 
-            }   // End of Form
-                .navigationBarTitle(Text("Search a Company"), displayMode: .inline)
+            }//End of VStack
+            .navigationBarTitle(Text("Search a Company"), displayMode: .large)
+//            .padding(.top, 50)
+            
             
         }   // End of NavigationView
             .customNavigationViewStyle()  // Given in NavigationStyle.swift
         
     }   // End of body
-    
-    func searchApi() {
-        
-        // public func obtainCompanyDataFromApi is given in CompanyDataFromApi.swift
-        apiGetStockData(stockSymbol: self.searchFieldValue)
-    }
-    
-    var showSearchResults: some View {
-        
-//        let name = companyDataDictionaryFromApi["companyName"] as! String
-//        if name.isEmpty {
-//            return AnyView(NotFoundMessage(stockSymbol: self.searchFieldValue))
-//        }
-        
-        return AnyView(SearchResult(stockSymbol: self.searchFieldValue))
-    }
     
     var searchFieldEmptyAlert: Alert {
         Alert(title: Text("The Stock Symbol Field is Empty!"),

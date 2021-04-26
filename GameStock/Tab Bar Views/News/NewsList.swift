@@ -32,8 +32,9 @@ struct NewsList: View {
                     }
                 }//End of list
             }
-            
+            .navigationBarTitle(Text("News"), displayMode: .large)
         }//End of navview
+        
         .customNavigationViewStyle()
     }
 }
