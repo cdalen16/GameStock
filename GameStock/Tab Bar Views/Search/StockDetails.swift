@@ -73,15 +73,13 @@ struct StockDetails: View {
         var arrayResults = [Double]()
         
         var dataArray = apiGetStockChart(stockSymbol: Symbol, Duration: "1m")
-        
-        var i = 0;
-        
+                
 
         
         for time in dataArray {
             
-            arrayResults[i] = time.fClose
-            i += 1
+            arrayResults.append(time.fClose)
+
         }
         
         
