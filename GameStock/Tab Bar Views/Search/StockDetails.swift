@@ -6,6 +6,7 @@
 //  Copyright © 2021 GameStock. All rights reserved.
 //
 
+import SwiftUICharts
 import SwiftUI
 import MapKit
 
@@ -13,23 +14,33 @@ struct StockDetails: View {
     let stockDet: StockStruct
     
     var body: some View {
+
         Form{
+            
             Section(header: Text("Stock Name")){
                 Text(stockDet.name)
             }
             Section(header: Text("Logo")){
                 getImageFromUrl(url: stockDet.imgURL, defaultFilename: "")
             }
+            
+            Section(header: Text("Historical Data")){
+                LineView(data: getDoubleArrayForChart(Symbol: stockDet.symbol), title: "Line Chart")
+                    .frame(width: 300, height: 400, alignment: .center)
+
+            }
+
+            
             Section(header: Text("Share Price")){
                 Text("$\(String(stockDet.latestPrice))")
             }
             Section(header: Text("30 Days Low")){
                 Text("$\(String(stockDet.low))")
-
+                
             }
             Section(header: Text("30 Days High")){
                 Text("$\(String(stockDet.high))")
-
+                
             }
             Section(header: Text("Company Headquarters")){
                 NavigationLink(destination: placeLocationOnMap ) {
@@ -41,7 +52,7 @@ struct StockDetails: View {
                         .font(.system(size: 16))
                 }
                 .frame(minWidth: 300, maxWidth: 500, alignment: .leading)
-
+                
             }
             Section(header: Text("Keep A Watch")){
                 
@@ -52,17 +63,37 @@ struct StockDetails: View {
             Section(header: Text("Amount of Shares")){
                 
             }
-            
-            
-            
-        } // End of Form
+        }
+        
+        
         
     }
+    
+    func getDoubleArrayForChart(Symbol: String) -> [Double] {
+        var arrayResults = [Double]()
+        
+        var dataArray = apiGetStockChart(stockSymbol: Symbol, Duration: "1m")
+        
+        var i = 0;
+        
+
+        
+        for time in dataArray {
+            
+            arrayResults[i] = time.fClose
+            i += 1
+        }
+        
+        
+        print(arrayResults)
+        return arrayResults
+    }
+    
     
     var placeLocationOnMap: some View{
         
         let mapType = MKMapType.standard
-            
+        
         let lat = stockDet.latitude
         let longt = stockDet.longitude
         let title = stockDet.name
@@ -70,7 +101,7 @@ struct StockDetails: View {
         return AnyView(MapView(mapType: mapType, latitude: lat, longitude: longt, delta: 10.0, deltaUnit: "degrees", annotationTitle: title, annotationSubtitle: ""))
             .navigationBarTitle(Text(title ?? ""), displayMode: .inline)
             .edgesIgnoringSafeArea(.all)
-
+        
         
     }
 }

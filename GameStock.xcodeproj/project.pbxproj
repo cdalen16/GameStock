@@ -3,12 +3,14 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		6B304A4826364D8400F52419 /* StockDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B304A4726364D8400F52419 /* StockDetails.swift */; };
 		6B304A4B263655DB00F52419 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B304A4A263655DB00F52419 /* MapView.swift */; };
+		6B304A532637027700F52419 /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = 6B304A522637027700F52419 /* SwiftUICharts */; };
+		6B304A5626370ABB00F52419 /* ChartStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B304A5526370ABB00F52419 /* ChartStruct.swift */; };
 		6BEA7EDB2630AAAA0005F18E /* MapAPIData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BEA7EDA2630AAAA0005F18E /* MapAPIData.swift */; };
 		6BEA7EE32630AAF20005F18E /* PortfolioDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BEA7EE22630AAF20005F18E /* PortfolioDetails.swift */; };
 		6BEA7EE62630AB690005F18E /* MapDataStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BEA7EE52630AB690005F18E /* MapDataStruct.swift */; };
@@ -47,6 +49,7 @@
 /* Begin PBXFileReference section */
 		6B304A4726364D8400F52419 /* StockDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockDetails.swift; sourceTree = "<group>"; };
 		6B304A4A263655DB00F52419 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		6B304A5526370ABB00F52419 /* ChartStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartStruct.swift; sourceTree = "<group>"; };
 		6BEA7EDA2630AAAA0005F18E /* MapAPIData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapAPIData.swift; sourceTree = "<group>"; };
 		6BEA7EE22630AAF20005F18E /* PortfolioDetails.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PortfolioDetails.swift; sourceTree = "<group>"; };
 		6BEA7EE52630AB690005F18E /* MapDataStruct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapDataStruct.swift; sourceTree = "<group>"; };
@@ -89,6 +92,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6B304A532637027700F52419 /* SwiftUICharts in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -213,6 +217,7 @@
 				B719A1B6262F65D700337783 /* UserData.swift */,
 				B719A1CA2636430300337783 /* StockStruct.swift */,
 				B719A20C2636649E00337783 /* NewsStruct.swift */,
+				6B304A5526370ABB00F52419 /* ChartStruct.swift */,
 			);
 			path = "Data Model";
 			sourceTree = "<group>";
@@ -274,6 +279,9 @@
 			dependencies = (
 			);
 			name = GameStock;
+			packageProductDependencies = (
+				6B304A522637027700F52419 /* SwiftUICharts */,
+			);
 			productName = GameStock;
 			productReference = B719A188262F589E00337783 /* GameStock.app */;
 			productType = "com.apple.product-type.application";
@@ -302,6 +310,9 @@
 				Base,
 			);
 			mainGroup = B719A17F262F589E00337783;
+			packageReferences = (
+				6B304A512637027700F52419 /* XCRemoteSwiftPackageReference "ChartView" */,
+			);
 			productRefGroup = B719A189262F589E00337783 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -360,6 +371,7 @@
 				B719A190262F589E00337783 /* ContentView.swift in Sources */,
 				B719A1CB2636430300337783 /* StockStruct.swift in Sources */,
 				B719A1D22636499400337783 /* NavigationStyle.swift in Sources */,
+				6B304A5626370ABB00F52419 /* ChartStruct.swift in Sources */,
 				B7E325B626309BD0008E683C /* IEXApi.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -560,6 +572,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		6B304A512637027700F52419 /* XCRemoteSwiftPackageReference "ChartView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AppPear/ChartView.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.5.5;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		6B304A522637027700F52419 /* SwiftUICharts */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6B304A512637027700F52419 /* XCRemoteSwiftPackageReference "ChartView" */;
+			productName = SwiftUICharts;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		B719A191262F589E00337783 /* GameStock.xcdatamodeld */ = {
