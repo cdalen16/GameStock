@@ -222,6 +222,79 @@ func apiGetStockData(stockSymbol: String) -> StockStruct {
     return StockStruct(id: UUID(), high: 0.0, low: 0.0, percentChange: 0.0, isMarketOpen: false, label: "", latestPrice: 0.0, primaryExchange: "", symbol: "", name: "", imgURL: "", latitude: 0.0, longitude: 0.0)
 }
 
+func apiGetStockChart(stockSymbol: String, Duration: String) -> [HisStockData] {
+    var searchResults = [HisStockData]()
+    
+    let managedObjectContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    let StockEntity = Stock(context: managedObjectContext)
+    let CompanyEntitry = Company(context: managedObjectContext)
+    let PhotoEntity = Photo(context: managedObjectContext)
+       
+    //let apiUrl = "https://cloud.iexapis.com/stable/tops?token=\(publicAPIToken)&symbols=\(stockSymbol)"
+    let apiUrlMain = "https://cloud.iexapis.com/stable/stock/\(stockSymbol)/chart/\(Duration)/?token=\(publicAPIToken)"
+    
+    let jsonDataFromApiMain = getJsonDataFromApi(apiUrl: apiUrlMain)
+    
+    if(jsonDataFromApiMain == nil){
+        return [HisStockData]()
+    }
+    
+    do {
+        let jsonResponseMain = try JSONSerialization.jsonObject(with: jsonDataFromApiMain!,
+                           options: JSONSerialization.ReadingOptions.mutableContainers)
+        
+        var stockSymbol = "", fOpen = 0.0, fClose = 0.0, fHigh = 0.0
+        var fLow = 0.0, fVolume = 0, date = "", priceChange = 0.0, changePercent = 0.0
+        
+        if let jsonObject = jsonResponseMain as? [Dictionary <String, Any>]{
+            
+            for item in jsonObject{
+                
+                let stockSymbol = item["symbol"] as? String ?? ""
+                let fOpen = item["fOpen"] as? Double ?? 0.0
+                let fClose = item["fClose"] as? Double ?? 0.0
+                let fHigh = item["fHigh"] as? Double ?? 0.0
+                let fLow = item["fLow"] as? Double ?? 0.0
+                let fVolume = item["fVolume"] as? Int ?? 0
+                let date = item["date"] as? String ?? ""
+                let priceChange = item["priceChange"] as? Double ?? 0.0
+                let changePercent = item["changePercent"] as? Double ?? 0.0
+                
+                
+                let newChart = HisStockData(id: UUID(), stockSymbol: stockSymbol, fOpen: fOpen, fClose: fClose, fHigh: fHigh, fLow: fLow, fVolume: fVolume, date: date, priceChange: priceChange, changePercent: changePercent)
+                
+                searchResults.append(newChart)
+                
+            }
+            
+            
+        } else { return [HisStockData]()}
+        
+        
+    
+//        let nStock = HisStockData(id: UUID(), stockSymbol: stockSymbol, fOpen: fOpen, fClose: fClose, fHigh: fHigh, fLow: fLow, fVolume: fVolume, date: date, priceChange: Double, changePercent: Double)
+        
+//        searchResults.append(nStock)
+        
+        // ❎ CoreData Save operation
+        do {
+            try managedObjectContext.save()
+        } catch {
+            return [HisStockData]()
+
+        }
+        
+        
+        
+        
+    } catch {
+        print("Failed trying to get API Main Data")
+    }
+    return searchResults
+
+}
+
+
 
 //func getStockItem(stockSymbol: String) {
 //    let managedObjectContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
