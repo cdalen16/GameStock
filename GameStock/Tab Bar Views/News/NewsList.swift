@@ -28,7 +28,9 @@ struct NewsList: View {
                 }
                 List {
                     ForEach(userData.newsSearchResults) { item in
-                        NewsItem(news: item)
+                        NavigationLink(destination: WebView(url: item.storyUrl)) {
+                            NewsItem(news: item)
+                        }
                     }
                 }//End of list
             }
