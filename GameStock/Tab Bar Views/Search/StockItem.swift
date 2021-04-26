@@ -15,6 +15,9 @@ struct StockItem: View {
     var body: some View {
         HStack {
             getImageFromUrl(url: stock.imgURL, defaultFilename: "")
+                .resizable()
+                .frame(width: 80.0, height: 80.0, alignment: .leading)
+                
             VStack {
                 Text(stock.name)
                 Text(stock.symbol)
@@ -23,10 +26,10 @@ struct StockItem: View {
             VStack {
                 Text("$\(String(stock.latestPrice))")
                 if stock.percentChange > 0 {
-                    Text("\(String(stock.percentChange * 100))%")
+                    Text("\(String(format: "%.2f", stock.percentChange * 100))%")
                         .foregroundColor(.green)
                 } else {
-                    Text("\(String(stock.percentChange * 100))%")
+                    Text("\(String(format: "%.2f", stock.percentChange * 100))%")
                         .foregroundColor(.red)
                 }
             }

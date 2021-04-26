@@ -24,12 +24,15 @@ struct Home: View {
 //            return Text(amountString)
 //        }
     var body: some View {
-        
-        HStack {
-            Text("User balance: ")
-            Text(String(userData.userBalance))
-        }
-    }
+        NavigationView {
+            List {
+                ForEach(homeStocks) { aStock in
+                        StockItem(stock: aStock)
+                }
+            }   // End of List
+            .navigationBarTitle(Text("Hot Stocks"), displayMode: .inline)
+        } .customNavigationViewStyle() // End of NavigationView
+    }   // End of body
 }
 
 struct Home_Previews: PreviewProvider {

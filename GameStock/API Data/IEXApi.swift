@@ -12,14 +12,25 @@ import CoreData
 import Foundation
 var secretAPIToken = "sk_c0b797b55c3f43308c995a689ca8829b"
 var publicAPIToken = "pk_735b57c54441439d8db9c5ccffb3e3aa"
-var stockSymbols = [String]()
 
+let top25StockSymbols = ["aapl", "fb", "googl", "msft", "amzn", "tsla", "intc", "ocgn", "sypr", "amd", "ge", "aal", "f", "pfe", "wfc", "nok", "x", "riot", "amc", "twtr", "rail", "xom", "orcl", "nclh", "mvis"]
+var homeStocks = [StockStruct]()
+
+
+var stockSymbols = [String]()
+/*
 func api() {
     apiGetSymbols()
     //for symbol in stockSymbols {
     //    apiGetStockData(stockSymbol: symbol)
     //}
     apiGetStockData(stockSymbol: "googl")
+}
+ */
+func getHomeStocks() {
+    for symbol in top25StockSymbols {
+        homeStocks.append(apiGetStockData(stockSymbol: symbol))
+    }
 }
 func apiGetSymbols() {
     
@@ -55,7 +66,7 @@ func apiGetStockData(stockSymbol: String) -> StockStruct {
     let PhotoEntity = Photo(context: managedObjectContext)
    
     //let apiUrl = "https://cloud.iexapis.com/stable/tops?token=\(publicAPIToken)&symbols=\(stockSymbol)"
-    let apiUrlMain = "https://cloud.iexapis.com/stable/stock/aapl/quote/latestPrices?token=\(publicAPIToken)"
+    let apiUrlMain = "https://cloud.iexapis.com/stable/stock/\(stockSymbol)/quote/latestPrices?token=\(publicAPIToken)"
     
     let jsonDataFromApiMain = getJsonDataFromApi(apiUrl: apiUrlMain)
     
@@ -130,9 +141,13 @@ func apiGetStockData(stockSymbol: String) -> StockStruct {
                         companyName = newCompanyName as? String ?? ""
                     }
                 }
-                let mapDetails = getLatLong(addressInput: address)
-                hqLatitude = mapDetails[0].latitude
-                hqLongitude = mapDetails[0].longitude
+                if address != "" {
+                    let mapDetails = getLatLong(addressInput: address)
+                    hqLatitude = mapDetails[0].latitude
+                    hqLongitude = mapDetails[0].longitude
+                }
+                
+               
                 
                     
             } catch {
