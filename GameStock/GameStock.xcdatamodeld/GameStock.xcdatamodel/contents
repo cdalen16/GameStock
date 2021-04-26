@@ -8,7 +8,7 @@
         <relationship name="stock" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Stock" inverseName="company" inverseEntity="Stock"/>
     </entity>
     <entity name="Photo" representedClassName=".Photo" syncable="YES">
-        <attribute name="photoImage" optional="YES" attributeType="Binary"/>
+        <attribute name="imageUrl" optional="YES" attributeType="String"/>
         <relationship name="company" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Company" inverseName="photo" inverseEntity="Company"/>
     </entity>
     <entity name="Stock" representedClassName=".Stock" syncable="YES">

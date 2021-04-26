@@ -10,6 +10,6 @@ import Foundation
 import CoreData
 // ❎ CoreData Photo entity public class
 public class Photo: NSManagedObject, Identifiable {
-    @NSManaged public var photoImage: Data?
+    @NSManaged public var imageUrl: String?
     @NSManaged public var company: Company?
 }

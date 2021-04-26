@@ -28,6 +28,7 @@
 		B7E325BA26309F97008E683C /* Stock.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E325B926309F97008E683C /* Stock.swift */; };
 		B7E325BE2630A00D008E683C /* Company.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E325BD2630A00D008E683C /* Company.swift */; };
 		B7E325C12630A049008E683C /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E325C02630A049008E683C /* Photo.swift */; };
+		B7E325C626363BDD008E683C /* UtilityFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E325C526363BDD008E683C /* UtilityFunctions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +55,7 @@
 		B7E325B926309F97008E683C /* Stock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stock.swift; sourceTree = "<group>"; };
 		B7E325BD2630A00D008E683C /* Company.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Company.swift; sourceTree = "<group>"; };
 		B7E325C02630A049008E683C /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
+		B7E325C526363BDD008E683C /* UtilityFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilityFunctions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +96,7 @@
 		B719A18A262F589E00337783 /* GameStock */ = {
 			isa = PBXGroup;
 			children = (
+				B7E325C426363BD0008E683C /* Supporting Files */,
 				B7E325B826309F8D008E683C /* Core DB */,
 				B7E325B426309BC0008E683C /* API Data */,
 				B719A1B5262F65A400337783 /* Data Model */,
@@ -200,6 +203,14 @@
 			path = "Core DB";
 			sourceTree = "<group>";
 		};
+		B7E325C426363BD0008E683C /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				B7E325C526363BDD008E683C /* UtilityFunctions.swift */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -281,6 +292,7 @@
 				B719A1BA262F691B00337783 /* Home.swift in Sources */,
 				B719A18E262F589E00337783 /* SceneDelegate.swift in Sources */,
 				B719A1B2262F653900337783 /* ForgotPassword.swift in Sources */,
+				B7E325C626363BDD008E683C /* UtilityFunctions.swift in Sources */,
 				B7E325C12630A049008E683C /* Photo.swift in Sources */,
 				B719A1C0262F6A0800337783 /* QuestionList.swift in Sources */,
 				B719A1AC262F651100337783 /* LoginView.swift in Sources */,
