@@ -236,6 +236,7 @@ struct Settings: View {
               message: Text("The amount of \(amountDepoFormatter) has been deposited to your account."),
               dismissButton: .default(Text("OK")) {
                 self.showDepoAlert = false
+                self.depoAmount = 0
               })
     }
 }

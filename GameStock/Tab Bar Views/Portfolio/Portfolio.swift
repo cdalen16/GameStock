@@ -17,10 +17,10 @@ struct Portfolio: View {
         Form{
             
             Section(header: Text("Net Worth")) {
-                Text("\(userData.addedBalance - userData.userBalance)")
+                userNetWorthFormatter
             }
             Section(header: Text("Current Balance")) {
-                Text("\(userData.userBalance)")
+                userBalanceFormatter
             }
                 
             
@@ -70,5 +70,32 @@ struct Portfolio: View {
             
         }// End of Form
     } // End of body
+    
+    var userBalanceFormatter: Text {
+        let inAmount = userData.userBalance
+           
+            // Add thousand separators to trip cost
+            let numberFormatter = NumberFormatter()
+            numberFormatter.numberStyle = .decimal
+            numberFormatter.usesGroupingSeparator = true
+            numberFormatter.groupingSize = 3
+           
+            let amountString = "$" + numberFormatter.string(from: inAmount as NSNumber)!
+            return Text(amountString)
+        }
+    
+    var userNetWorthFormatter: Text {
+        let inAmount = userData.addedBalance - userData.userBalance
+           
+            // Add thousand separators to trip cost
+            let numberFormatter = NumberFormatter()
+            numberFormatter.numberStyle = .decimal
+            numberFormatter.usesGroupingSeparator = true
+            numberFormatter.groupingSize = 3
+           
+            let amountString = "$" + numberFormatter.string(from: inAmount as NSNumber)!
+            return Text(amountString)
+        }
+    
 }
 
