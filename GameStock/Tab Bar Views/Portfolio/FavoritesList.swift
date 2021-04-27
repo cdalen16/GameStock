@@ -53,29 +53,35 @@ struct FavoritesList: View {
         
     }   // End of body
     
-    /*
-     ------------------------------
-     MARK: - Delete Selected Recipe
-     ------------------------------
-     */
     func convert(aStock: Stock) -> StockStruct {
-        let high = aStock.high as! Double
-        let low = aStock.low as! Double
-        let percentChange = aStock.percentChange as! Double
-        var isMarketOpen = false
-        if let bool = aStock.percentChange {
-            isMarketOpen = bool as! Bool
-        }
-        let label = aStock.label!
-        let latestPrice = aStock.latestPrice as! Double
-        let primaryExchange = aStock.primaryExchange!
-        let symbol = aStock.symbol!
-        let name = aStock.company!.name!
-        let imgURL = aStock.company!.photo!.imageUrl!
-        let latitude = aStock.company!.hqLatitude as! Double
-        let longitude = aStock.company!.hqLongitude as! Double
-        return StockStruct(id: UUID(), high: high, low: low, percentChange: percentChange, isMarketOpen: isMarketOpen, label: label, latestPrice: latestPrice, primaryExchange: primaryExchange, symbol: symbol, name: name, imgURL: imgURL, latitude: latitude, longitude: longitude)
+        let thisStock = apiGetStockData(stockSymbol: aStock.stockSymbol as! String)
+        print(thisStock)
+        return(thisStock)
     }
+    
+//    /*
+//     ------------------------------
+//     MARK: - Delete Selected Recipe
+//     ------------------------------
+//     */
+//    func convert(aStock: Stock) -> StockStruct {
+//        let high = aStock.high as! Double
+//        let low = aStock.low as! Double
+//        let percentChange = aStock.percentChange as! Double
+//        var isMarketOpen = false
+//        if let bool = aStock.percentChange {
+//            isMarketOpen = bool as! Bool
+//        }
+//        let label = aStock.label!
+//        let latestPrice = aStock.latestPrice as! Double
+//        let primaryExchange = aStock.primaryExchange!
+//        let symbol = aStock.symbol!
+//        let name = aStock.company!.name!
+//        let imgURL = aStock.company!.photo!.imageUrl!
+//        let latitude = aStock.company!.hqLatitude as! Double
+//        let longitude = aStock.company!.hqLongitude as! Double
+//        return StockStruct(id: UUID(), high: high, low: low, percentChange: percentChange, isMarketOpen: isMarketOpen, label: label, latestPrice: latestPrice, primaryExchange: primaryExchange, symbol: symbol, name: name, imgURL: imgURL, latitude: latitude, longitude: longitude)
+//    }
 }   // End of struct
 
 

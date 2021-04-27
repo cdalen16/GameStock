@@ -20,13 +20,15 @@ struct StockDetails: View {
         
         Form {
             Section(header: Text("Company And Stock Name")){
-                VStack{
-                    Text("\(stockDet.name)     \(stockDet.symbol)")
+                HStack {
+                    getImageFromUrl(url: stockDet.imgURL, defaultFilename: "")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 80.0, height: 80.0, alignment: .leading)
+                        .padding(.trailing, 50)
                     
+                    Text(stockDet.name)
                 }
-            }
-            Section(header: Text("Logo")){
-                getImageFromUrl(url: stockDet.imgURL, defaultFilename: "")
             }
             Section(header: Text("1 Month Historical Data")){
                 LineView(data: getDoubleArrayForChart(Symbol: stockDet.symbol), title: "Previous Month")
@@ -70,7 +72,7 @@ struct StockDetails: View {
                             Image(systemName: "minus.square")
                                 .resizable()
                                 .aspectRatio(contentMode: .fit)
-                                .frame(width: 40)
+                                .frame(width: 30)
                                 .foregroundColor(.blue)
                         }
                         .buttonStyle(BorderlessButtonStyle())
@@ -82,15 +84,18 @@ struct StockDetails: View {
                             let CompanyEntitry = Company(context: managedObjectContext)
                             let PhotoEntity = Photo(context: managedObjectContext)
                             
-                            StockEntity.high = stockDet.high as NSNumber
-                            StockEntity.low = stockDet.low as NSNumber
-                            StockEntity.percentChange = stockDet.percentChange as NSNumber
-                            StockEntity.isMarketOpen = stockDet.isMarketOpen as NSNumber
-                            StockEntity.label = stockDet.label
-                            StockEntity.latestPrice = stockDet.latestPrice as NSNumber
-                            StockEntity.primaryExchange = stockDet.primaryExchange
-                            StockEntity.symbol = stockDet.symbol
-                            StockEntity.numberPurchased = purchaseAmount as NSNumber
+//                            StockEntity.high = stockDet.high as NSNumber
+//                            StockEntity.low = stockDet.low as NSNumber
+//                            StockEntity.percentChange = stockDet.percentChange as NSNumber
+//                            StockEntity.isMarketOpen = stockDet.isMarketOpen as NSNumber
+//                            StockEntity.label = stockDet.label
+//                            StockEntity.latestPrice = stockDet.latestPrice as NSNumber
+//                            StockEntity.primaryExchange = stockDet.primaryExchange
+//                            StockEntity.symbol = stockDet.symbol
+//                            StockEntity.numberPurchased = purchaseAmount as NSNumber
+                            
+                            StockEntity.numberOfShares = NSNumber(value: purchaseAmount)
+                            StockEntity.stockSymbol = stockDet.symbol
                             
                             CompanyEntitry.hqLatitude = stockDet.latitude as NSNumber
                             CompanyEntitry.hqLongitude = stockDet.longitude as NSNumber
@@ -98,10 +103,11 @@ struct StockDetails: View {
                             
                             PhotoEntity.imageUrl = stockDet.imgURL
                             
-                            StockEntity.company = CompanyEntitry
+//                            StockEntity.company = CompanyEntitry
                             CompanyEntitry.stock = StockEntity
                             CompanyEntitry.photo = PhotoEntity
                             PhotoEntity.company = CompanyEntitry
+//                            print(StockEntity)
                             // ❎ CoreData Save operation
                             do {
                                 try managedObjectContext.save()
@@ -115,7 +121,7 @@ struct StockDetails: View {
                         }) {
                             Text("Buy \(purchaseAmount) Stock")
                         }
-                        .frame(width: 240, height: 36, alignment: .center)
+                        .frame(width: 230, height: 36, alignment: .center)
                         .background(
                             RoundedRectangle(cornerRadius: 16)
                                 .strokeBorder(Color.black, lineWidth: 1)
@@ -129,7 +135,7 @@ struct StockDetails: View {
                             Image(systemName: "plus.app")
                                 .resizable()
                                 .aspectRatio(contentMode: .fit)
-                                .frame(width: 40)
+                                .frame(width: 30)
                                 .foregroundColor(.blue)
                         }.buttonStyle(BorderlessButtonStyle())
                     } // End HStack
@@ -138,7 +144,10 @@ struct StockDetails: View {
                     
                 } // End VStack
             }
-        } .alert(isPresented: $showStockBoughtAlert, content: { self.stockBoughtAlert })
+            
+        }
+        .navigationBarTitle(Text(stockDet.symbol), displayMode: .large)
+        .alert(isPresented: $showStockBoughtAlert, content: { self.stockBoughtAlert })
     }
    
     func getDoubleArrayForChart(Symbol: String) -> [Double] {

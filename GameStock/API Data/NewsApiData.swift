@@ -18,7 +18,7 @@ var newNews = [NewsStruct]()
 
 func getNews(search: String) -> [NewsStruct] {
     
-////    let apiUrl = "https://newsapi.org/v2/everything?q=\(search)&apiKey=\(newsAPIToken)"
+//    let apiUrl = "https://newsapi.org/v2/everything?q=\(search)&apiKey=\(newsAPIToken)"
 //    let nDatee = Calendar.current.date(byAdding: .day, value: -30, to: Date())!
 //
 //    // Create an instance of DateFormatter

@@ -37,19 +37,19 @@ struct Portfolio: View {
                 }
                 .frame(minWidth: 300, maxWidth: 500)
             }
-            Section(header: Text("Show Watch List")) {
-                NavigationLink(destination: FavoritesList()) {
-                    HStack {
-                        Image(systemName: "list.bullet")
-                            .imageScale(.medium)
-                            .font(Font.title.weight(.regular))
-                            .foregroundColor(.blue)
-                        Text("Watch List")
-                            .font(.system(size: 16))
-                    }
-                }
-                .frame(minWidth: 300, maxWidth: 500)
-            }
+//            Section(header: Text("Show Watch List")) {
+//                NavigationLink(destination: FavoritesList()) {
+//                    HStack {
+//                        Image(systemName: "list.bullet")
+//                            .imageScale(.medium)
+//                            .font(Font.title.weight(.regular))
+//                            .foregroundColor(.blue)
+//                        Text("Watch List")
+//                            .font(.system(size: 16))
+//                    }
+//                }
+//                .frame(minWidth: 300, maxWidth: 500)
+//            }
             Section(header: Text("Owned Stock Breakdown")) {
                 NavigationLink(destination: PieChart()) {
                     HStack {
@@ -64,11 +64,9 @@ struct Portfolio: View {
                 .frame(minWidth: 300, maxWidth: 500)
             }
            
-        }
-            
-       
-            
-        }// End of Form
+        }//End of Form
+        .navigationBarTitle(Text("My Portfolio"), displayMode: .large)
+        }// End of NavView
     } // End of body
     
     var userBalanceFormatter: Text {

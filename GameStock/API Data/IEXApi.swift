@@ -11,7 +11,7 @@ import CoreData
 
 import Foundation
 var secretAPIToken = "sk_c0b797b55c3f43308c995a689ca8829b"
-var publicAPIToken = "pk_3d21a3e3cd054be7978ec92e11d270ea"
+var publicAPIToken = "pk_ee45e032e32b4b7a9fe06447bd0af5be"
 
 let top25StockSymbols = ["aapl", "fb", "googl", "msft", "amzn", "tsla", "intc", "ocgn", "sypr", "amd", "ge", "aal", "f", "pfe", "wfc", "nok", "x", "riot", "amc", "twtr", "rail", "xom", "orcl", "nclh", "mvis"]
 var homeStocks = [StockStruct]()

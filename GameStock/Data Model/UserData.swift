@@ -36,7 +36,7 @@ final class UserData: ObservableObject {
     
     @Published var securityQ = "What is the name of the first boy or girl that you first kissed?"
     
-    @Published var userBalance = 0.0
+    @Published var userBalance = UserDefaults.standard.double(forKey: "balance")
     
     @Published var addedBalance = 0.0
     
