@@ -19,10 +19,12 @@ struct StockItem: View {
                 .frame(width: 80.0, height: 80.0, alignment: .leading)
                 
             VStack {
-                //Text(stock.name)
-                Text(stock.symbol)
+                Text(stock.name)
+//                Text(stock.symbol)
             }
-            .padding()
+            .frame(width: 120, height: 50, alignment: .leading)
+            .padding(.trailing, 10)
+            .padding(.leading, 10)
             VStack {
                 Text("$\(String(stock.latestPrice))")
                 if stock.percentChange > 0 {
@@ -35,8 +37,8 @@ struct StockItem: View {
                         
                 }
             }
-            .frame(maxWidth: .infinity)
-            .padding()
+//            .frame(maxWidth: .infinity)
+            .frame(width: 80, height: 50, alignment: .leading)
             
         }.alignmentGuide(.trailing) {d in d[.trailing]}
     }

@@ -21,10 +21,10 @@ struct Portfolio: View {
         NavigationView {
         Form{
             
-            Section(header: Text("Net Worth")) {
+            Section(header: Text("Investment Value")) {
                 userNetWorthFormatter
             }
-            Section(header: Text("Current Balance")) {
+            Section(header: Text("Cash Balance")) {
                 userBalanceFormatter
             }
                 
