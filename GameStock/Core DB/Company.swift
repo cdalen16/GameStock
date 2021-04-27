@@ -20,7 +20,6 @@ import CoreData
  
 // ❎ CoreData Company entity public class
 public class Company: NSManagedObject, Identifiable {
- 
     @NSManaged public var name: String?
     @NSManaged public var hqLatitude: NSNumber?
     @NSManaged public var hqLongitude: NSNumber?

@@ -11,7 +11,7 @@ import CoreData
 
 import Foundation
 var secretAPIToken = "sk_c0b797b55c3f43308c995a689ca8829b"
-var publicAPIToken = "pk_735b57c54441439d8db9c5ccffb3e3aa"
+var publicAPIToken = "pk_3d21a3e3cd054be7978ec92e11d270ea"
 
 let top25StockSymbols = ["aapl", "fb", "googl", "msft", "amzn", "tsla", "intc", "ocgn", "sypr", "amd", "ge", "aal", "f", "pfe", "wfc", "nok", "x", "riot", "amc", "twtr", "rail", "xom", "orcl", "nclh", "mvis"]
 var homeStocks = [StockStruct]()
@@ -215,12 +215,7 @@ func apiGetStockData(stockSymbol: String) -> StockStruct {
         
         return nStock
         
-        // ❎ CoreData Save operation
-//        do {
-//            try managedObjectContext.save()
-//        } catch {
-//            return StockStruct(id: UUID(), high: 0.0, low: 0.0, percentChange: 0.0, isMarketOpen: false, label: "", latestPrice: 0.0, primaryExchange: "", symbol: "", name: "", imgURL: "", latitude: 0.0, longitude: 0.0)
-//        }
+    
         
         
         
@@ -281,17 +276,6 @@ func apiGetStockChart(stockSymbol: String, Duration: String) -> [HisStockData] {
         
         
     
-//        let nStock = HisStockData(id: UUID(), stockSymbol: stockSymbol, fOpen: fOpen, fClose: fClose, fHigh: fHigh, fLow: fLow, fVolume: fVolume, date: date, priceChange: Double, changePercent: Double)
-        
-//        searchResults.append(nStock)
-        
-        // ❎ CoreData Save operation
-        do {
-            try managedObjectContext.save()
-        } catch {
-            return [HisStockData]()
-
-        }
         
         
         

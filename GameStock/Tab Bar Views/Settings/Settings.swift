@@ -57,9 +57,16 @@ struct Settings: View {
                                     .keyboardType(.numbersAndPunctuation)
                         
                         Button(action: {
+                            //main user balance
                             let currAmount = UserDefaults.standard.double(forKey: "balance")
                             userData.userBalance = currAmount + self.depoAmount
                             UserDefaults.standard.set(self.depoAmount + currAmount, forKey: "balance")
+                            
+                            //total amount the user has added over the course of using the app
+                            let currAddedAmount = UserDefaults.standard.double(forKey: "addedBalance")
+                            userData.addedBalance = currAddedAmount + self.depoAmount
+                            UserDefaults.standard.set(self.depoAmount + currAddedAmount, forKey: "addedBalance")
+                            
                             showDepoAlert = true
                         }) {
                             Text("Deposit")

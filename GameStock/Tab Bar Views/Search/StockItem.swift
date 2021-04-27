@@ -23,14 +23,16 @@ struct StockItem: View {
                 Text(stock.symbol)
             }
             .padding()
-            VStack {
+            VStack(alignment: .trailing, spacing: 20) {
                 Text("$\(String(stock.latestPrice))")
                 if stock.percentChange > 0 {
                     Text("\(String(format: "%.2f", stock.percentChange * 100))%")
                         .foregroundColor(.green)
+                       
                 } else {
                     Text("\(String(format: "%.2f", stock.percentChange * 100))%")
                         .foregroundColor(.red)
+                        
                 }
             }
             .padding()

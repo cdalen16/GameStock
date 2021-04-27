@@ -15,11 +15,11 @@ struct MainView: View {
                     Image(systemName: "house")
                     Text("Home")
                 }
-//            ToDoView()
-//                .tabItem {
-//                    Image(systemName: "list.bullet")
-//                    Text("To Do")
-//                }
+            Portfolio()
+                .tabItem {
+                    Image(systemName: "person.crop.circle")
+                    Text("Portfolio")
+                }
             NewsList()
                 .tabItem {
                     Image(systemName: "newspaper")
@@ -41,10 +41,5 @@ struct MainView: View {
             .imageScale(.medium)
             .font(Font.title.weight(.regular))
     }
-}
 
-struct MainView_Previews: PreviewProvider {
-    static var previews: some View {
-        MainView().environmentObject(UserData())
-    }
 }

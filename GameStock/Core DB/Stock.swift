@@ -21,8 +21,9 @@ public class Stock: NSManagedObject, Identifiable {
     @NSManaged public var primaryExchange: String?
     @NSManaged public var symbol: String?
     @NSManaged public var company: Company?
+    @NSManaged public var numberPurchased: NSNumber?
 }
- /*
+ 
 extension Stock {
     /*
      ❎ CoreData @FetchRequest in TripList.swift invokes this Trip class method
@@ -30,20 +31,19 @@ extension Stock {
         The 'static' keyword designates the func as a class method invoked by using the
         class name as Trip.allTripsFetchRequest() in any .swift file in your project.
      */
-    static func allTripsFetchRequest() -> NSFetchRequest<Trip> {
+    static func favoritesRequest() -> NSFetchRequest<Stock> {
        
-        let request: NSFetchRequest<Trip> = Trip.fetchRequest() as! NSFetchRequest<Trip>
+        let request: NSFetchRequest<Stock> = Stock.fetchRequest() as! NSFetchRequest<Stock>
         /*
          List the trips in alphabetical order with respect to artistName;
          If artistName is the same, then sort with respect to Trip rating.
          */
+        
         request.sortDescriptors = [
             // Primary sort key: rating
-            NSSortDescriptor(key: "rating", ascending: false),
-            // Secondary sort key: title
-            NSSortDescriptor(key: "title", ascending: true)
+            NSSortDescriptor(key: "symbol", ascending: true),
+
         ]
-       
         return request
     }
    
@@ -53,6 +53,7 @@ extension Stock {
         The 'static' keyword designates the func as a class method invoked by using the
         class name as Trip.filteredTripsFetchRequest() in any .swift file in your project.
      */
+    /*
     static func filteredTripsFetchRequest(searchCategory: String, searchQuery: String) -> NSFetchRequest<Trip> {
        
         let fetchRequest = NSFetchRequest<Trip>(entityName: "Trip")
@@ -93,5 +94,6 @@ extension Stock {
        
         return fetchRequest
     }
+ */
 }
-*/
+

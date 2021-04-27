@@ -17,6 +17,7 @@
         <attribute name="label" optional="YES" attributeType="String"/>
         <attribute name="latestPrice" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="low" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="numberPurchased" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="percentChange" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="primaryExchange" optional="YES" attributeType="String"/>
         <attribute name="symbol" optional="YES" attributeType="String"/>
@@ -25,6 +26,6 @@
     <elements>
         <element name="Company" positionX="222.95703125" positionY="4.99169921875" width="128" height="104"/>
         <element name="Photo" positionX="26.0390625" positionY="-175.967529296875" width="128" height="73"/>
-        <element name="Stock" positionX="-60.9453125" positionY="-20.021728515625" width="128" height="178"/>
+        <element name="Stock" positionX="-60.9453125" positionY="-20.021728515625" width="128" height="179"/>
     </elements>
 </model>

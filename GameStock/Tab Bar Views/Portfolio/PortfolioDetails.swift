@@ -8,35 +8,13 @@
 
 import SwiftUI
 
-struct PortfolioDetails: View {
+struct Portfolio: View {
     var body: some View {
         
         Form{
-            Section(header: Text("Stock Name")){
-                
-            }
-            Section(header: Text("Share Price")){
-                
-            }
-            Section(header: Text("30 Days Low")){
-                
-            }
-            Section(header: Text("30 Days High")){
-                
-            }
-            Section(header: Text("Company Headquarters")){
-                
-            }
-            
-            
-            
+ 
         } // End of Form
         
     } // End of body
 }
 
-struct PortfolioDetails_Previews: PreviewProvider {
-    static var previews: some View {
-        PortfolioDetails()
-    }
-}
