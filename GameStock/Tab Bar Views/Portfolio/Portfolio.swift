@@ -12,6 +12,11 @@ struct Portfolio: View {
     
     @EnvironmentObject var userData: UserData
     
+    // ❎ CoreData managedObjectContext reference
+    @Environment(\.managedObjectContext) var managedObjectContext
+    // ❎ CoreData FetchRequest returning all Recipe entities in the database
+    @FetchRequest(fetchRequest: Stock.favoritesRequest()) var allStocks: FetchedResults<Stock>
+    
     var body: some View {
         NavigationView {
         Form{
@@ -66,6 +71,17 @@ struct Portfolio: View {
            
         }//End of Form
         .navigationBarTitle(Text("My Portfolio"), displayMode: .large)
+        .onAppear() {
+            self.userData.startTimer()
+            self.userData.currStocksInvested = [Stock]()
+            for aStock in allStocks {
+                self.userData.currStocksInvested.append(aStock)
+            }
+//            self.userData.currStocksInvested = allStocks
+        }
+        .onDisappear() {
+            self.userData.stopTimer()
+        }
         }// End of NavView
     } // End of body
     
@@ -83,7 +99,7 @@ struct Portfolio: View {
         }
     
     var userNetWorthFormatter: Text {
-        let inAmount = userData.addedBalance - userData.userBalance
+        let inAmount = userData.stockValue
            
             // Add thousand separators to trip cost
             let numberFormatter = NumberFormatter()

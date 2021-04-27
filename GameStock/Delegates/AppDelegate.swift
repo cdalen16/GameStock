@@ -16,6 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         getHomeStocks()
+        UserDefaults.standard.set([Stock](), forKey: "investments")
         //getLatLong(addressInput: "1256 Candlewood Ct")
         //getNews(search: "tesla")
 //        apiGetStockChart(stockSymbol: "twtr", Duration: "1m")

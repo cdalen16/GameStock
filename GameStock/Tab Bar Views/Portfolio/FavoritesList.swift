@@ -55,7 +55,7 @@ struct FavoritesList: View {
     
     func convert(aStock: Stock) -> StockStruct {
         let thisStock = apiGetStockData(stockSymbol: aStock.stockSymbol as! String)
-        print(thisStock)
+        //print(thisStock)
         return(thisStock)
     }
     

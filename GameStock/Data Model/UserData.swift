@@ -8,6 +8,7 @@
 
 import Combine
 import SwiftUI
+import CoreData
  
 final class UserData: ObservableObject {
     /*
@@ -42,64 +43,92 @@ final class UserData: ObservableObject {
     
     @Published var newsSearchResults = getNews(search: "")
     
-    // Instance Variables for Voice Recording Duration Timer
-    var durationTimer = Timer()
-    var startTime: Double = 0
-    var timeElapsed: Double = 0
-    var timerHours: UInt8 = 0
-    var timerMinutes: UInt8 = 0
-    var timerSeconds: UInt8 = 0
-    var timerMilliseconds: UInt8 = 0
-   
-    // Publish voiceRecordingDuration
-    @Published var voiceRecordingDuration = ""
+    @Published var currStocksInvested = [Stock]()
     
+    @Published var savedInDatabase =  NotificationCenter.default.publisher(for: .NSManagedObjectContextDidSave)
+    
+
+//    // ❎ CoreData FetchRequest returning all Recipe entities in the database
+//    @FetchRequest(fetchRequest: Stock.favoritesRequest()) var allStocks: FetchedResults<Stock>
     
     /*
-     ---------------------------------------------------
-     MARK: - Scheduling a Voice Recording Duration Timer
-     ---------------------------------------------------
+     -------------------------------
+     MARK: - Slide Show Declarations
+     -------------------------------
      */
-    public func startDurationTimer() {
+//    let numberOfImagesInSlideShow = 9
+//    var counter = 0
+    /*
+     Create a Timer using initializer () and store its object reference into slideShowTimer.
+     A Timer() object invokes a method after a certain time interval has elapsed.
+     */
+    var slideShowTimer = Timer()
+ 
+    /*
+     ===============================================================================
+     MARK: -               Publisher-Subscriber Design Pattern
+     ===============================================================================
+     | Publisher:   @Published var under class conforming to ObservableObject      |
+     | Subscriber:  Any View declaring '@EnvironmentObject var userData: UserData' |
+     ===============================================================================
+    
+     By modifying the first View to be shown, ContentView(), with '.environmentObject(UserData())' in
+     SceneDelegate, we inject an instance of this UserData() class into the environment and make it
+     available to every View subscribing to it by declaring '@EnvironmentObject var userData: UserData'.
+    
+     When a change occurs in userData (e.g., deleting a country from the list, reordering countries list,
+     adding a new country to the list), every View subscribed to it is notified to re-render its View.
+     ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+     NOTE:  Only Views can subscribe to it. You cannot subscribe to it within
+            a non-View Swift file such as our CountriesData.swift file.
+     ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+     */
+   
+    // Publish imageNumber to refresh the View body in Home.swift when it is changed in the slide show
+    @Published var stockValue = UserDefaults.standard.double(forKey: "stockValue")
+
+    
+   
+    /*
+     --------------------------
+     MARK: - Scheduling a Timer
+     --------------------------
+     */
+    public func startTimer() {
+        // Stop timer if running
+        stopTimer()
+ 
         /*
-         Schedule a timer to invoke the updateTimeLabel() function given below
-         after 0.01 second in a loop that repeats itself until it is stopped.
+         Schedule a timer to invoke the fireTimer() method given below
+         after 3 seconds in a loop that repeats itself until it is stopped.
          */
-        durationTimer = Timer.scheduledTimer(timeInterval: 0.01,
-                                             target: self,
-                                             selector: (#selector(self.updateTimeLabel)),
-                                             userInfo: nil,
-                                             repeats: true)
-       
-        // Time at which the timer starts
-        startTime = Date().timeIntervalSinceReferenceDate
+        slideShowTimer = Timer.scheduledTimer(timeInterval: 3,
+                             target: self,
+                             selector: (#selector(fireTimer)),
+                             userInfo: nil,
+                             repeats: true)
+    }
+ 
+    public func stopTimer() {
+//        counter = 0
+        slideShowTimer.invalidate()
     }
    
-    public func stopDurationTimer() {
-        durationTimer.invalidate()
-    }
-   
-    @objc func updateTimeLabel(){
-        // Calculate total time since timer started in seconds
-        timeElapsed = Date().timeIntervalSinceReferenceDate - startTime
-       
-        // Calculate hours
-        timerHours = UInt8(timeElapsed / 3600)
-        timeElapsed = timeElapsed - (TimeInterval(timerHours) * 3600)
-       
-        // Calculate minutes
-        timerMinutes = UInt8(timeElapsed / 60.0)
-        timeElapsed = timeElapsed - (TimeInterval(timerMinutes) * 60)
-       
-        // Calculate seconds
-        timerSeconds = UInt8(timeElapsed)
-        timeElapsed = timeElapsed - TimeInterval(timerSeconds)
-       
-        // Calculate milliseconds
-        timerMilliseconds = UInt8(timeElapsed * 100)
-       
-        // Create the time string and update the label
-        let timeString = String(format: "%02d:%02d:%02d.%02d", timerHours, timerMinutes, timerSeconds, timerMilliseconds)
-        voiceRecordingDuration = timeString
+    @objc func fireTimer() {
+        
+//        print("hello")
+        
+        var currValue = 0.0
+//        print(allStocks)
+
+        for aStock in currStocksInvested as! [Stock] {
+            
+            let currStock = apiGetStockData(stockSymbol: aStock.stockSymbol as! String)
+            currValue = currValue + currStock.latestPrice * Double(aStock.numberOfShares!)
+        }
+        print(currValue)
+        self.stockValue = currValue
+        UserDefaults.standard.set(currValue, forKey: "stockValue")
+        
     }
 }

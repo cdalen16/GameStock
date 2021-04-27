@@ -11,6 +11,10 @@ import SwiftUI
 import MapKit
 
 struct StockDetails: View {
+    
+    // Subscribe to changes in UserData
+    @EnvironmentObject var userData: UserData
+    
     let stockDet: StockStruct
     @State var purchaseAmount = 0
     @State private var showStockBoughtAlert = false
@@ -115,8 +119,14 @@ struct StockDetails: View {
                                 print("ERROR! Can't save Item to Core Db")
                             }
                             
+                            let currAmount = UserDefaults.standard.double(forKey: "balance")
+                            userData.userBalance = currAmount - (Double(purchaseAmount) * stockDet.latestPrice)
+                            UserDefaults.standard.set(userData.userBalance, forKey: "balance")
+                            
+//                            let currinv = UserDefaults.standard.double(forKey: "balance")
+                            userData.currStocksInvested.append(StockEntity)
+//                            UserDefaults.standard.set(userData.currStocksInvested, forKey: "investments")
                             showStockBoughtAlert = true
-
                             
                         }) {
                             Text("Buy \(purchaseAmount) Stock")
@@ -161,7 +171,7 @@ struct StockDetails: View {
         }
         
         
-        print(arrayResults)
+        //print(arrayResults)
         return arrayResults
     }
     var placeLocationOnMap: some View{

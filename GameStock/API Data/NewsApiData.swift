@@ -65,7 +65,6 @@ func getNews(search: String) -> [NewsStruct] {
                     }
                     if let pub = story["publishedAt"] as? String {
                         newsDate = pub
-                        print(newsDate)
                     }
                     if let aut = story["author"] as? String {
                         newsAuthor = aut
