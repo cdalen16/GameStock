@@ -60,10 +60,10 @@ func apiGetSymbols() {
 
 
 func apiGetStockData(stockSymbol: String) -> StockStruct {
-    let managedObjectContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    let StockEntity = Stock(context: managedObjectContext)
-    let CompanyEntitry = Company(context: managedObjectContext)
-    let PhotoEntity = Photo(context: managedObjectContext)
+    //let managedObjectContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    //let StockEntity = Stock(context: managedObjectContext)
+    //let CompanyEntitry = Company(context: managedObjectContext)
+    //let PhotoEntity = Photo(context: managedObjectContext)
    
     //let apiUrl = "https://cloud.iexapis.com/stable/tops?token=\(publicAPIToken)&symbols=\(stockSymbol)"
     let apiUrlMain = "https://cloud.iexapis.com/stable/stock/\(stockSymbol)/quote/latestPrices?token=\(publicAPIToken)"
@@ -95,10 +95,10 @@ func apiGetStockData(stockSymbol: String) -> StockStruct {
         var city = ""
 
         if let dataMain = jsonResponseMain as? [String : Any] {
-            if let newHigh = dataMain["high"] {
+            if let newHigh = dataMain["week52High"] {
                 high = newHigh as? Double ?? 0.0
             }
-            if let newLow = dataMain["low"] {
+            if let newLow = dataMain["week52Low"] {
                 low = newLow as? Double ?? 0.0
             }
             if let newPercentChange = dataMain["changePercent"] {
@@ -190,7 +190,7 @@ func apiGetStockData(stockSymbol: String) -> StockStruct {
             }
 
         }
-        
+        /*
         StockEntity.high = high as NSNumber
         StockEntity.low = low as NSNumber
         StockEntity.percentChange = percentChange as NSNumber
@@ -210,7 +210,7 @@ func apiGetStockData(stockSymbol: String) -> StockStruct {
         CompanyEntitry.stock = StockEntity
         CompanyEntitry.photo = PhotoEntity
         PhotoEntity.company = CompanyEntitry
-    
+        */
         let nStock = StockStruct(id: UUID(), high: high, low: low, percentChange: percentChange, isMarketOpen: isMarketOpen, label: label, latestPrice: latestPrice, primaryExchange: primaryExchange, symbol: symbol, name: companyName, imgURL: logoUrl, latitude: hqLatitude, longitude: hqLongitude)
         
         return nStock

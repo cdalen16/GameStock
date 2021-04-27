@@ -46,6 +46,7 @@
 		B7E325C626363BDD008E683C /* UtilityFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E325C526363BDD008E683C /* UtilityFunctions.swift */; };
 		B7E325CC26377333008E683C /* Portfolio.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E325CB26377333008E683C /* Portfolio.swift */; };
 		B7E325D1263790C9008E683C /* FavoritesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E325D0263790C9008E683C /* FavoritesList.swift */; };
+		B7E325D42638166E008E683C /* PieChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E325D32638166E008E683C /* PieChart.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -89,6 +90,7 @@
 		B7E325C526363BDD008E683C /* UtilityFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilityFunctions.swift; sourceTree = "<group>"; };
 		B7E325CB26377333008E683C /* Portfolio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Portfolio.swift; sourceTree = "<group>"; };
 		B7E325D0263790C9008E683C /* FavoritesList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesList.swift; sourceTree = "<group>"; };
+		B7E325D32638166E008E683C /* PieChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieChart.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +110,7 @@
 			children = (
 				B7E325CB26377333008E683C /* Portfolio.swift */,
 				B7E325D0263790C9008E683C /* FavoritesList.swift */,
+				B7E325D32638166E008E683C /* PieChart.swift */,
 			);
 			path = Portfolio;
 			sourceTree = "<group>";
@@ -355,6 +358,7 @@
 				B719A2152636686D00337783 /* NewsList.swift in Sources */,
 				B7E325BA26309F97008E683C /* Stock.swift in Sources */,
 				6BEA7EE62630AB690005F18E /* MapDataStruct.swift in Sources */,
+				B7E325D42638166E008E683C /* PieChart.swift in Sources */,
 				B719A1BD262F69F000337783 /* Settings.swift in Sources */,
 				B719A1BA262F691B00337783 /* Home.swift in Sources */,
 				B7AA7D462637283D00306413 /* WebView.swift in Sources */,

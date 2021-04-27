@@ -13,17 +13,17 @@ struct StockItem: View {
     let stock: StockStruct
     
     var body: some View {
-        HStack {
+        HStack(spacing: 20) {
             getImageFromUrl(url: stock.imgURL, defaultFilename: "")
                 .resizable()
                 .frame(width: 80.0, height: 80.0, alignment: .leading)
                 
             VStack {
-                Text(stock.name)
+                //Text(stock.name)
                 Text(stock.symbol)
             }
             .padding()
-            VStack(alignment: .trailing, spacing: 20) {
+            VStack {
                 Text("$\(String(stock.latestPrice))")
                 if stock.percentChange > 0 {
                     Text("\(String(format: "%.2f", stock.percentChange * 100))%")
@@ -35,8 +35,10 @@ struct StockItem: View {
                         
                 }
             }
+            .frame(maxWidth: .infinity)
             .padding()
-        }
+            
+        }.alignmentGuide(.trailing) {d in d[.trailing]}
     }
 }
 

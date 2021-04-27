@@ -17,33 +17,30 @@ struct StockDetails: View {
     
     var body: some View {
 
-        Form{
-            
+        
+        Form {
             Section(header: Text("Company And Stock Name")){
                 VStack{
-                    Text(stockDet.name)
-                    Text(stockDet.symbol)
+                    Text("\(stockDet.name)     \(stockDet.symbol)")
+                    
                 }
-                
             }
             Section(header: Text("Logo")){
                 getImageFromUrl(url: stockDet.imgURL, defaultFilename: "")
             }
-            Section(header: Text("Historical Data")){
-                LineView(data: getDoubleArrayForChart(Symbol: stockDet.symbol), title: "Line Chart")
+            Section(header: Text("1 Month Historical Data")){
+                LineView(data: getDoubleArrayForChart(Symbol: stockDet.symbol), title: "Previous Month")
                     .frame(width: 300, height: 400, alignment: .center)
-
             }
             Section(header: Text("Share Price")){
                 Text("$\(String(stockDet.latestPrice))")
             }
-            Section(header: Text("30 Days Low")){
+            Section(header: Text("1 Year Low")){
                 Text("$\(String(stockDet.low))")
                 
             }
-            Section(header: Text("30 Days High")){
+            Section(header: Text("1 Year High")){
                 Text("$\(String(stockDet.high))")
-                
             }
             Section(header: Text("Company Headquarters")){
                 NavigationLink(destination: placeLocationOnMap ) {
@@ -63,11 +60,11 @@ struct StockDetails: View {
             Section(header: Text("Buy Stock")){
                 VStack {
                     HStack {
+                       
                         //minus button
                         Button(action: {
                             if purchaseAmount > 0 {
-                                //purchaseAmount -= 1
-                                print(purchaseAmount)
+                                purchaseAmount -= 1
                             }
                         }) {
                             Image(systemName: "minus.square")
@@ -76,6 +73,7 @@ struct StockDetails: View {
                                 .frame(width: 40)
                                 .foregroundColor(.blue)
                         }
+                        .buttonStyle(BorderlessButtonStyle())
                         
                         //buy stock button
                         Button(action: {
@@ -112,6 +110,7 @@ struct StockDetails: View {
                             }
                             
                             showStockBoughtAlert = true
+
                             
                         }) {
                             Text("Buy \(purchaseAmount) Stock")
@@ -121,26 +120,23 @@ struct StockDetails: View {
                             RoundedRectangle(cornerRadius: 16)
                                 .strokeBorder(Color.black, lineWidth: 1)
                         )
+                        .buttonStyle(BorderlessButtonStyle())
                         
                         //plus button
                         Button(action: {
                             purchaseAmount += 1
-                            print(purchaseAmount)
                         }) {
                             Image(systemName: "plus.app")
                                 .resizable()
                                 .aspectRatio(contentMode: .fit)
                                 .frame(width: 40)
                                 .foregroundColor(.blue)
-                        }
-                        
-                    }
+                        }.buttonStyle(BorderlessButtonStyle())
+                    } // End HStack
+                    Text("Price: \(String(format: "%.2f", Double(purchaseAmount) * stockDet.latestPrice))")
+                    //Text("\(String(format: "%.2f", stock.percentChange * 100))%")
                     
-                }
-                
-            }
-            Section(header: Text("Amount of Shares")){
-                
+                } // End VStack
             }
         } .alert(isPresented: $showStockBoughtAlert, content: { self.stockBoughtAlert })
     }
@@ -149,11 +145,8 @@ struct StockDetails: View {
         var arrayResults = [Double]()
         
         let dataArray = apiGetStockChart(stockSymbol: Symbol, Duration: "1m")
-                
-
-        
+                 
         for time in dataArray {
-            
             arrayResults.append(time.fClose)
 
         }
@@ -179,7 +172,6 @@ struct StockDetails: View {
               message: Text("You have bought \(purchaseAmount) shares of \(stockDet.symbol) stock!"),
               dismissButton: .default(Text("OK")) )
     }
-
 }
 
 struct StockDetails_Previews: PreviewProvider {

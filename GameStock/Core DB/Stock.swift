@@ -35,8 +35,7 @@ extension Stock {
        
         let request: NSFetchRequest<Stock> = Stock.fetchRequest() as! NSFetchRequest<Stock>
         /*
-         List the trips in alphabetical order with respect to artistName;
-         If artistName is the same, then sort with respect to Trip rating.
+         List the stocks in alphabetical order with respect to symbol;
          */
         
         request.sortDescriptors = [

@@ -15,12 +15,15 @@ struct Portfolio: View {
     var body: some View {
         NavigationView {
         Form{
-            VStack{
-                Section(header: Text("Net Balance")) {
-                    Text("\(userData.addedBalance - userData.userBalance)")
-                }
-                
+            
+            Section(header: Text("Net Worth")) {
+                Text("\(userData.addedBalance - userData.userBalance)")
             }
+            Section(header: Text("Current Balance")) {
+                Text("\(userData.userBalance)")
+            }
+                
+            
             Section(header: Text("Show Favorites List")) {
                 NavigationLink(destination: FavoritesList()) {
                     HStack {
@@ -47,13 +50,25 @@ struct Portfolio: View {
                 }
                 .frame(minWidth: 300, maxWidth: 500)
             }
+            Section(header: Text("Owned Stock Breakdown")) {
+                NavigationLink(destination: PieChart()) {
+                    HStack {
+                        Image(systemName: "list.bullet")
+                            .imageScale(.medium)
+                            .font(Font.title.weight(.regular))
+                            .foregroundColor(.blue)
+                        Text("Stock Breakdown")
+                            .font(.system(size: 16))
+                    }
+                }
+                .frame(minWidth: 300, maxWidth: 500)
+            }
            
         }
             
+       
             
-        } // End of Form
-        
+        }// End of Form
     } // End of body
 }
-
 
