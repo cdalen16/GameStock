@@ -88,16 +88,6 @@ struct StockDetails: View {
                             let CompanyEntitry = Company(context: managedObjectContext)
                             let PhotoEntity = Photo(context: managedObjectContext)
                             
-//                            StockEntity.high = stockDet.high as NSNumber
-//                            StockEntity.low = stockDet.low as NSNumber
-//                            StockEntity.percentChange = stockDet.percentChange as NSNumber
-//                            StockEntity.isMarketOpen = stockDet.isMarketOpen as NSNumber
-//                            StockEntity.label = stockDet.label
-//                            StockEntity.latestPrice = stockDet.latestPrice as NSNumber
-//                            StockEntity.primaryExchange = stockDet.primaryExchange
-//                            StockEntity.symbol = stockDet.symbol
-//                            StockEntity.numberPurchased = purchaseAmount as NSNumber
-                            
                             StockEntity.numberOfShares = NSNumber(value: purchaseAmount)
                             StockEntity.stockSymbol = stockDet.symbol
                             
@@ -107,11 +97,10 @@ struct StockDetails: View {
                             
                             PhotoEntity.imageUrl = stockDet.imgURL
                             
-//                            StockEntity.company = CompanyEntitry
                             CompanyEntitry.stock = StockEntity
                             CompanyEntitry.photo = PhotoEntity
                             PhotoEntity.company = CompanyEntitry
-//                            print(StockEntity)
+
                             // ❎ CoreData Save operation
                             do {
                                 try managedObjectContext.save()
@@ -123,9 +112,8 @@ struct StockDetails: View {
                             userData.userBalance = currAmount - (Double(purchaseAmount) * stockDet.latestPrice)
                             UserDefaults.standard.set(userData.userBalance, forKey: "balance")
                             
-//                            let currinv = UserDefaults.standard.double(forKey: "balance")
-                            userData.currStocksInvested.append(StockEntity)
-//                            UserDefaults.standard.set(userData.currStocksInvested, forKey: "investments")
+                            //userData.currStocksInvested.append(StockEntity)
+
                             showStockBoughtAlert = true
                             
                         }) {

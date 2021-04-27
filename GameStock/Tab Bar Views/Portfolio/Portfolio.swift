@@ -29,45 +29,45 @@ struct Portfolio: View {
             }
                 
             
-            Section(header: Text("Show Favorites List")) {
+            Section(header: Text("Show My Investments")) {
                 NavigationLink(destination: FavoritesList()) {
                     HStack {
                         Image(systemName: "list.bullet")
                             .imageScale(.medium)
                             .font(Font.title.weight(.regular))
                             .foregroundColor(.blue)
-                        Text("Favorites List")
+                        Text("My Investments")
                             .font(.system(size: 16))
                     }
                 }
                 .frame(minWidth: 300, maxWidth: 500)
             }
-//            Section(header: Text("Show Watch List")) {
-//                NavigationLink(destination: FavoritesList()) {
-//                    HStack {
-//                        Image(systemName: "list.bullet")
-//                            .imageScale(.medium)
-//                            .font(Font.title.weight(.regular))
-//                            .foregroundColor(.blue)
-//                        Text("Watch List")
-//                            .font(.system(size: 16))
-//                    }
-//                }
-//                .frame(minWidth: 300, maxWidth: 500)
-//            }
-            Section(header: Text("Owned Stock Breakdown")) {
-                NavigationLink(destination: PieChart()) {
+            Section(header: Text("Show Watch List")) {
+                NavigationLink(destination: FavoritesList()) {
                     HStack {
                         Image(systemName: "list.bullet")
                             .imageScale(.medium)
                             .font(Font.title.weight(.regular))
                             .foregroundColor(.blue)
-                        Text("Stock Breakdown")
+                        Text("Watch List")
                             .font(.system(size: 16))
                     }
                 }
                 .frame(minWidth: 300, maxWidth: 500)
             }
+//            Section(header: Text("Owned Stock Breakdown")) {
+//                NavigationLink(destination: PieChart()) {
+//                    HStack {
+//                        Image(systemName: "list.bullet")
+//                            .imageScale(.medium)
+//                            .font(Font.title.weight(.regular))
+//                            .foregroundColor(.blue)
+//                        Text("Stock Breakdown")
+//                            .font(.system(size: 16))
+//                    }
+//                }
+//                .frame(minWidth: 300, maxWidth: 500)
+//            }
            
         }//End of Form
         .navigationBarTitle(Text("My Portfolio"), displayMode: .large)
@@ -77,7 +77,6 @@ struct Portfolio: View {
             for aStock in allStocks {
                 self.userData.currStocksInvested.append(aStock)
             }
-//            self.userData.currStocksInvested = allStocks
         }
         .onDisappear() {
             self.userData.stopTimer()

@@ -24,7 +24,6 @@ struct FavoritesList: View {
     @EnvironmentObject var userData: UserData
     
     var body: some View {
-        NavigationView {
             List {
                 /*
                  Each NSManagedObject has internally assigned unique ObjectIdentifier
@@ -38,7 +37,7 @@ struct FavoritesList: View {
 
                 
             }   // End of List
-                .navigationBarTitle(Text("Favorites"), displayMode: .inline)
+                .navigationBarTitle(Text("My Investments"), displayMode: .large)
                 /*
                 // Place the Edit button on left and Add (+) button on right of the navigation bar
                 .navigationBarItems(leading: EditButton(), trailing:
@@ -46,15 +45,13 @@ struct FavoritesList: View {
                         Image(systemName: "plus")
                 })
                 */
-            
-        }   // End of NavigationView
             // Use single column navigation view for iPhone and iPad
             .navigationViewStyle(StackNavigationViewStyle())
         
     }   // End of body
     
     func convert(aStock: Stock) -> StockStruct {
-        let thisStock = apiGetStockData(stockSymbol: aStock.stockSymbol as! String)
+        let thisStock = apiGetStockData(stockSymbol: aStock.stockSymbol!)
         //print(thisStock)
         return(thisStock)
     }

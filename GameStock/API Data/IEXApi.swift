@@ -7,26 +7,16 @@
 //
 import SwiftUI
 import CoreData
-
-
 import Foundation
-var secretAPIToken = "sk_c0b797b55c3f43308c995a689ca8829b"
-var publicAPIToken = "pk_ee45e032e32b4b7a9fe06447bd0af5be"
+
+var publicAPIToken = "pk_f8be26d2c6644a89942aa1a3b226ec09"
 
 let top25StockSymbols = ["aapl", "fb", "googl", "msft", "amzn", "tsla", "intc", "ocgn", "sypr", "amd", "ge", "aal", "f", "pfe", "wfc", "nok", "x", "riot", "amc", "twtr", "rail", "xom", "orcl", "nclh", "mvis"]
 var homeStocks = [StockStruct]()
 
 
 var stockSymbols = [String]()
-/*
-func api() {
-    apiGetSymbols()
-    //for symbol in stockSymbols {
-    //    apiGetStockData(stockSymbol: symbol)
-    //}
-    apiGetStockData(stockSymbol: "googl")
-}
- */
+
 func getHomeStocks() {
     for symbol in top25StockSymbols {
         homeStocks.append(apiGetStockData(stockSymbol: symbol))
@@ -60,12 +50,7 @@ func apiGetSymbols() {
 
 
 func apiGetStockData(stockSymbol: String) -> StockStruct {
-    //let managedObjectContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    //let StockEntity = Stock(context: managedObjectContext)
-    //let CompanyEntitry = Company(context: managedObjectContext)
-    //let PhotoEntity = Photo(context: managedObjectContext)
-   
-    //let apiUrl = "https://cloud.iexapis.com/stable/tops?token=\(publicAPIToken)&symbols=\(stockSymbol)"
+
     let apiUrlMain = "https://cloud.iexapis.com/stable/stock/\(stockSymbol)/quote/latestPrices?token=\(publicAPIToken)"
     
     let jsonDataFromApiMain = getJsonDataFromApi(apiUrl: apiUrlMain)
@@ -190,35 +175,11 @@ func apiGetStockData(stockSymbol: String) -> StockStruct {
             }
 
         }
-        /*
-        StockEntity.high = high as NSNumber
-        StockEntity.low = low as NSNumber
-        StockEntity.percentChange = percentChange as NSNumber
-        StockEntity.isMarketOpen = isMarketOpen as NSNumber
-        StockEntity.label = label
-        StockEntity.latestPrice = latestPrice as NSNumber
-        StockEntity.primaryExchange = primaryExchange
-        StockEntity.symbol = symbol
-        
-        CompanyEntitry.hqLatitude = hqLatitude as NSNumber
-        CompanyEntitry.hqLongitude = hqLongitude as NSNumber
-        CompanyEntitry.name = companyName as String
-        
-        PhotoEntity.imageUrl = logoUrl
-        
-        StockEntity.company = CompanyEntitry
-        CompanyEntitry.stock = StockEntity
-        CompanyEntitry.photo = PhotoEntity
-        PhotoEntity.company = CompanyEntitry
-        */
+
         let nStock = StockStruct(id: UUID(), high: high, low: low, percentChange: percentChange, isMarketOpen: isMarketOpen, label: label, latestPrice: latestPrice, primaryExchange: primaryExchange, symbol: symbol, name: companyName, imgURL: logoUrl, latitude: hqLatitude, longitude: hqLongitude)
         
         return nStock
-        
-    
-        
-        
-        
+
         
     } catch {
         print("Failed trying to get API Main Data")
@@ -229,10 +190,6 @@ func apiGetStockData(stockSymbol: String) -> StockStruct {
 func apiGetStockChart(stockSymbol: String, Duration: String) -> [HisStockData] {
     var searchResults = [HisStockData]()
     
-    let managedObjectContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-//    let StockEntity = Stock(context: managedObjectContext)
-//    let CompanyEntitry = Company(context: managedObjectContext)
-//    let PhotoEntity = Photo(context: managedObjectContext)
        
     //let apiUrl = "https://cloud.iexapis.com/stable/tops?token=\(publicAPIToken)&symbols=\(stockSymbol)"
     let apiUrlMain = "https://cloud.iexapis.com/stable/stock/\(stockSymbol)/chart/\(Duration)/?token=\(publicAPIToken)"
@@ -247,8 +204,6 @@ func apiGetStockChart(stockSymbol: String, Duration: String) -> [HisStockData] {
         let jsonResponseMain = try JSONSerialization.jsonObject(with: jsonDataFromApiMain!,
                            options: JSONSerialization.ReadingOptions.mutableContainers)
         
-//        var stockSymbol = "", fOpen = 0.0, fClose = 0.0, fHigh = 0.0
-//        var fLow = 0.0, fVolume = 0, date = "", priceChange = 0.0, changePercent = 0.0
         
         if let jsonObject = jsonResponseMain as? [Dictionary <String, Any>]{
             

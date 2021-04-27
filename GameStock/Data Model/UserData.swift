@@ -45,19 +45,12 @@ final class UserData: ObservableObject {
     
     @Published var currStocksInvested = [Stock]()
     
+     // Publish imageNumber to refresh the View body in Home.swift when it is changed in the slide show
+     @Published var stockValue = UserDefaults.standard.double(forKey: "stockValue")
+    
     @Published var savedInDatabase =  NotificationCenter.default.publisher(for: .NSManagedObjectContextDidSave)
-    
 
-//    // ❎ CoreData FetchRequest returning all Recipe entities in the database
-//    @FetchRequest(fetchRequest: Stock.favoritesRequest()) var allStocks: FetchedResults<Stock>
     
-    /*
-     -------------------------------
-     MARK: - Slide Show Declarations
-     -------------------------------
-     */
-//    let numberOfImagesInSlideShow = 9
-//    var counter = 0
     /*
      Create a Timer using initializer () and store its object reference into slideShowTimer.
      A Timer() object invokes a method after a certain time interval has elapsed.
@@ -83,11 +76,7 @@ final class UserData: ObservableObject {
             a non-View Swift file such as our CountriesData.swift file.
      ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
      */
-   
-    // Publish imageNumber to refresh the View body in Home.swift when it is changed in the slide show
-    @Published var stockValue = UserDefaults.standard.double(forKey: "stockValue")
 
-    
    
     /*
      --------------------------
@@ -110,20 +99,16 @@ final class UserData: ObservableObject {
     }
  
     public func stopTimer() {
-//        counter = 0
         slideShowTimer.invalidate()
     }
    
     @objc func fireTimer() {
         
-//        print("hello")
-        
         var currValue = 0.0
-//        print(allStocks)
 
-        for aStock in currStocksInvested as! [Stock] {
+        for aStock in currStocksInvested {
             
-            let currStock = apiGetStockData(stockSymbol: aStock.stockSymbol as! String)
+            let currStock = apiGetStockData(stockSymbol: aStock.stockSymbol!)
             currValue = currValue + currStock.latestPrice * Double(aStock.numberOfShares!)
         }
         print(currValue)
