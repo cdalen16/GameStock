@@ -11,17 +11,6 @@ import CoreData
  
 // ❎ CoreData Stock entity public class
 public class Stock: NSManagedObject, Identifiable {
- 
-//    @NSManaged public var percentChange: NSNumber?
-//    @NSManaged public var high: NSNumber?
-//    @NSManaged public var low: NSNumber?
-//    @NSManaged public var isMarketOpen: NSNumber?
-//    @NSManaged public var label: String?
-//    @NSManaged public var latestPrice: NSNumber?
-//    @NSManaged public var primaryExchange: String?
-//    @NSManaged public var symbol: String?
-//    @NSManaged public var company: Company?
-//    @NSManaged public var numberPurchased: NSNumber?
     @NSManaged public var numberOfShares: NSNumber?
     @NSManaged public var stockSymbol: String?
 }

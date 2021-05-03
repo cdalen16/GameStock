@@ -27,7 +27,7 @@ struct Home: View {
         NavigationView {
             List {
                 ForEach(homeStocks) { aStock in
-                    NavigationLink(destination: StockDetails(stockDet: aStock)){
+                    NavigationLink(destination: StockDetails(stockDet: aStock, ofStock: Stock())){
                         StockItem(stock: aStock)
                     }
                 }
