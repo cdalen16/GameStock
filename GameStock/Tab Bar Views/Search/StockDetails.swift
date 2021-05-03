@@ -17,6 +17,7 @@ struct StockDetails: View {
     
     let stockDet: StockStruct
     let ofStock: Stock
+    let own: Bool
     
     @State var purchaseAmount = 0
     @State private var showStockBoughtAlert = false
@@ -65,7 +66,7 @@ struct StockDetails: View {
                 .frame(minWidth: 300, maxWidth: 500, alignment: .leading)
                 
             }
-            if ofStock != Stock() {
+            if own {
                 Section(header: Text("Current Shares")){
                     Text(ofStock.numberOfShares!.stringValue)
                 }
@@ -265,6 +266,6 @@ struct StockDetails: View {
 
 struct StockDetails_Previews: PreviewProvider {
     static var previews: some View {
-        StockDetails(stockDet: apiGetStockData(stockSymbol: "AAPL"), ofStock: Stock())
+        StockDetails(stockDet: apiGetStockData(stockSymbol: "AAPL"), ofStock: Stock(), own: false)
     }
 }

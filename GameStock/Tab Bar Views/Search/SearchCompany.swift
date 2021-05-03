@@ -24,7 +24,7 @@ struct SearchCompany: View {
                 
                 if apiGetStockData(stockSymbol: searchFieldValue).latestPrice != 0.0 {
                     List {
-                        NavigationLink(destination: StockDetails(stockDet: apiGetStockData(stockSymbol: searchFieldValue), ofStock: Stock())) {
+                        NavigationLink(destination: StockDetails(stockDet: apiGetStockData(stockSymbol: searchFieldValue), ofStock: Stock(), own: false)) {
                             StockItem(stock: apiGetStockData(stockSymbol: searchFieldValue))
                         }
                     }//End of List

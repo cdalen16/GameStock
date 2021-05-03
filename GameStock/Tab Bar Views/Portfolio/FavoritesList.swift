@@ -30,7 +30,7 @@ struct FavoritesList: View {
                  used by ForEach to display the Recipes in a dynamic scrollable list.
                  */
                 ForEach(self.allStocks) { aStock in
-                    NavigationLink(destination: StockDetails(stockDet: convert(aStock: aStock), ofStock: aStock)) {
+                    NavigationLink(destination: StockDetails(stockDet: convert(aStock: aStock), ofStock: aStock, own: true)) {
                         StockItem(stock: convert(aStock: aStock))
                     }
                 }
