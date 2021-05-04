@@ -20,11 +20,6 @@ struct MainView: View {
                     Image(systemName: "person.crop.circle")
                     Text("Portfolio")
                 }
-            NewsList()
-                .tabItem {
-                    Image(systemName: "newspaper")
-                    Text("News")
-                }
             SearchCompany()
                 .tabItem {
                     Image(systemName: "magnifyingglass.circle")

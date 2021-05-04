@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import SwiftUICharts
 
 struct Portfolio: View {
     
@@ -68,6 +69,13 @@ struct Portfolio: View {
 //                }
 //                .frame(minWidth: 300, maxWidth: 500)
 //            }
+            Section(header: Text("How much are you investing?")){
+                HStack{
+                    Spacer()
+                    PieChartView(data: [userData.stockValue, userData.initialValue], title: "Money Breakdown")
+                    Spacer()
+                }
+            }
            
         }//End of Form
         .navigationBarTitle(Text("My Portfolio"), displayMode: .large)

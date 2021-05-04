@@ -150,77 +150,79 @@ struct StockDetails: View {
                     
                 } // End VStack
             }
-            Section(header: Text("Sell Stock")){
-                VStack {
-                    HStack {
-                       
-                        //minus button
-                        Button(action: {
-                            if sellAmount > 0 {
-                                sellAmount -= 1
+            if own{
+                Section(header: Text("Sell Stock")){
+                    VStack {
+                        HStack {
+                           
+                            //minus button
+                            Button(action: {
+                                if sellAmount > 0 {
+                                    sellAmount -= 1
+                                }
+                            }) {
+                                Image(systemName: "minus.square")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(width: 30)
+                                    .foregroundColor(.blue)
                             }
-                        }) {
-                            Image(systemName: "minus.square")
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: 30)
-                                .foregroundColor(.blue)
-                        }
-                        .buttonStyle(BorderlessButtonStyle())
-                        
-                        //buy stock button
-                        Button(action: {
-                            ofStock.numberOfShares = NSNumber(value: ofStock.numberOfShares as! Int - sellAmount)
-                            /*
-                             ==================================
-                             Save Changes to Core Data Database
-                             ==================================
-                            */
+                            .buttonStyle(BorderlessButtonStyle())
+                            
+                            //buy stock button
+                            Button(action: {
+                                ofStock.numberOfShares = NSNumber(value: ofStock.numberOfShares as! Int - sellAmount)
+                                /*
+                                 ==================================
+                                 Save Changes to Core Data Database
+                                 ==================================
+                                */
 
-                            // ❎ CoreData Save operation
-                            do {
-                                try managedObjectContext.save()
-                            } catch {
-                                return
+                                // ❎ CoreData Save operation
+                                do {
+                                    try managedObjectContext.save()
+                                } catch {
+                                    return
+                                }
+
+                                
+                                let currAmount = UserDefaults.standard.double(forKey: "balance")
+                                userData.userBalance = currAmount + (Double(sellAmount) * stockDet.latestPrice)
+                                UserDefaults.standard.set(userData.userBalance, forKey: "balance")
+                                
+                                //userData.currStocksInvested.append(StockEntity)
+
+                                showStockSoldAlert = true
+                                
+                            }) {
+                                Text("Sell \(sellAmount) Shares")
                             }
-
+                            .frame(width: 230, height: 36, alignment: .center)
+                            .background(
+                                RoundedRectangle(cornerRadius: 16)
+                                    .strokeBorder(Color.black, lineWidth: 1)
+                            )
+                            .buttonStyle(BorderlessButtonStyle())
                             
-                            let currAmount = UserDefaults.standard.double(forKey: "balance")
-                            userData.userBalance = currAmount + (Double(sellAmount) * stockDet.latestPrice)
-                            UserDefaults.standard.set(userData.userBalance, forKey: "balance")
-                            
-                            //userData.currStocksInvested.append(StockEntity)
-
-                            showStockSoldAlert = true
-                            
-                        }) {
-                            Text("Sell \(sellAmount) Shares")
-                        }
-                        .frame(width: 230, height: 36, alignment: .center)
-                        .background(
-                            RoundedRectangle(cornerRadius: 16)
-                                .strokeBorder(Color.black, lineWidth: 1)
-                        )
-                        .buttonStyle(BorderlessButtonStyle())
+                            //plus button
+                            Button(action: {
+                                sellAmount += 1
+                            }) {
+                                Image(systemName: "plus.app")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(width: 30)
+                                    .foregroundColor(.blue)
+                            }.buttonStyle(BorderlessButtonStyle())
+                        } // End HStack
+                        Text("Price: \(String(format: "%.2f", Double(sellAmount) * stockDet.latestPrice))")
+                        //Text("\(String(format: "%.2f", stock.percentChange * 100))%")
                         
-                        //plus button
-                        Button(action: {
-                            sellAmount += 1
-                        }) {
-                            Image(systemName: "plus.app")
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: 30)
-                                .foregroundColor(.blue)
-                        }.buttonStyle(BorderlessButtonStyle())
-                    } // End HStack
-                    Text("Price: \(String(format: "%.2f", Double(sellAmount) * stockDet.latestPrice))")
-                    //Text("\(String(format: "%.2f", stock.percentChange * 100))%")
-                    
-                } // End VStack
+                    } // End VStack
+                }
+                .alert(isPresented: $showStockSoldAlert, content: { self.stockSoldAlert })
             }
-            .alert(isPresented: $showStockSoldAlert, content: { self.stockSoldAlert })
-            
+
         }
         .navigationBarTitle(Text(stockDet.symbol), displayMode: .large)
         .alert(isPresented: $showStockBoughtAlert, content: { self.stockBoughtAlert })

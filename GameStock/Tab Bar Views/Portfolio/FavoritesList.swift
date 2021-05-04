@@ -8,9 +8,10 @@
 
 import SwiftUI
 import CoreData
+import SwiftUICharts
 
 struct FavoritesList: View {
-    
+        
     // ❎ CoreData managedObjectContext reference
     @Environment(\.managedObjectContext) var managedObjectContext
     
@@ -24,6 +25,15 @@ struct FavoritesList: View {
     @EnvironmentObject var userData: UserData
     
     var body: some View {
+        Form{
+            Section(header: Text("")){
+                HStack{
+                    Spacer()
+                    PieChartView(data: getDoubleArrayForChart(), title: "Stock BreakDown")
+                    Spacer()
+                }
+    
+            }
             List {
                 /*
                  Each NSManagedObject has internally assigned unique ObjectIdentifier
@@ -40,8 +50,40 @@ struct FavoritesList: View {
                 .navigationBarTitle(Text("My Investments"), displayMode: .large)
             // Use single column navigation view for iPhone and iPad
             .navigationViewStyle(StackNavigationViewStyle())
+        }
+//        .onAppear{
+//            getNamesAndShares()
+//        }
+
         
     }   // End of body
+    
+    func getNamesAndShares() -> [String] {
+        
+        var namesAndShares = [String]()
+        
+        for time in allStocks {
+            
+            let value = Double(NSNumber(value: time.numberOfShares as! Double)) * convert(aStock: time).latestPrice
+            namesAndShares.append("\(time.stockSymbol ?? ""): \(value)")
+
+        }
+        return namesAndShares
+    }
+    
+    
+    func getDoubleArrayForChart() -> [Double] {
+        var arrayResults = [Double]()
+        
+                 
+        for time in allStocks {
+            arrayResults.append(Double(NSNumber(value: time.numberOfShares as! Double)) * convert(aStock: time).latestPrice)
+            
+        }
+        
+        //print(arrayResults)
+        return arrayResults
+    }
     
     func convert(aStock: Stock) -> StockStruct {
         let thisStock = apiGetStockData(stockSymbol: aStock.stockSymbol!)

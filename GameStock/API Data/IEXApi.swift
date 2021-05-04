@@ -14,14 +14,19 @@ var publicAPIToken = "pk_f8be26d2c6644a89942aa1a3b226ec09"
 let top25StockSymbols = ["aapl", "fb", "googl", "msft", "amzn", "tsla", "intc", "ocgn", "sypr", "amd", "ge", "aal", "f", "pfe", "wfc", "nok", "x", "riot", "amc", "twtr", "rail", "xom", "orcl", "nclh", "mvis"]
 var homeStocks = [StockStruct]()
 
-
-var stockSymbols = [String]()
-
 func getHomeStocks() {
     for symbol in top25StockSymbols {
         homeStocks.append(apiGetStockData(stockSymbol: symbol))
     }
 }
+
+var stockSymbols = [String]()
+
+//func getHomeStocks() {
+//    for symbol in top25StockSymbols {
+//        homeStocks.append(apiGetStockData(stockSymbol: symbol))
+//    }
+//}
 func apiGetSymbols() {
     
     let apiUrl = "https://cloud.iexapis.com/ref-data/symbols?token=\(publicAPIToken)"

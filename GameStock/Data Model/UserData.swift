@@ -39,18 +39,22 @@ final class UserData: ObservableObject {
     
     @Published var userBalance = UserDefaults.standard.double(forKey: "balance")
     
+    @Published var initialValue = UserDefaults.standard.double(forKey: "initialBalance")
+    
     @Published var addedBalance = 0.0
     
+    @Published var quoteList = quotesStructList
+    
     @Published var newsSearchResults = getNews(search: "")
+//    @Published var getHotList = getHomeStocks()
     
     @Published var currStocksInvested = [Stock]()
     
      // Publish imageNumber to refresh the View body in Home.swift when it is changed in the slide show
-     @Published var stockValue = UserDefaults.standard.double(forKey: "stockValue")
+    @Published var stockValue = UserDefaults.standard.double(forKey: "stockValue")
     
     @Published var savedInDatabase =  NotificationCenter.default.publisher(for: .NSManagedObjectContextDidSave)
 
-    
     /*
      Create a Timer using initializer () and store its object reference into slideShowTimer.
      A Timer() object invokes a method after a certain time interval has elapsed.
@@ -116,4 +120,14 @@ final class UserData: ObservableObject {
         UserDefaults.standard.set(currValue, forKey: "stockValue")
         
     }
+    
+    public func getAQuote() -> QuoteStruct {
+        
+        let rand = Int.random(in: 0..<325)
+        
+        let quote = quotesStructList[rand]
+        
+        return quote
+    }
+    
 }

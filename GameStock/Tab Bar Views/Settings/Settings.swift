@@ -62,6 +62,8 @@ struct Settings: View {
                             userData.userBalance = currAmount + self.depoAmount
                             UserDefaults.standard.set(self.depoAmount + currAmount, forKey: "balance")
                             
+                            UserDefaults.standard.set(userData.userBalance, forKey: "initialBalance")
+                            
                             //total amount the user has added over the course of using the app
                             let currAddedAmount = UserDefaults.standard.double(forKey: "addedBalance")
                             userData.addedBalance = currAddedAmount + self.depoAmount
