@@ -18,7 +18,6 @@ struct NewsList: View {
         
 //        var searchResults = [NewsStruct]()
         
-        NavigationView {
             VStack {
                 SearchBar(searchItem: $searchItem, placeholder: "Search Companies")
                 Button(action: {
@@ -35,7 +34,6 @@ struct NewsList: View {
                 }//End of list
             }
             .navigationBarTitle(Text("News"), displayMode: .large)
-        }//End of navview
         
         .customNavigationViewStyle()
     }

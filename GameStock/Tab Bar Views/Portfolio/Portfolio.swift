@@ -43,32 +43,7 @@ struct Portfolio: View {
                 }
                 .frame(minWidth: 300, maxWidth: 500)
             }
-            Section(header: Text("Show Watch List")) {
-                NavigationLink(destination: FavoritesList()) {
-                    HStack {
-                        Image(systemName: "list.bullet")
-                            .imageScale(.medium)
-                            .font(Font.title.weight(.regular))
-                            .foregroundColor(.blue)
-                        Text("Watch List")
-                            .font(.system(size: 16))
-                    }
-                }
-                .frame(minWidth: 300, maxWidth: 500)
-            }
-//            Section(header: Text("Owned Stock Breakdown")) {
-//                NavigationLink(destination: PieChart()) {
-//                    HStack {
-//                        Image(systemName: "list.bullet")
-//                            .imageScale(.medium)
-//                            .font(Font.title.weight(.regular))
-//                            .foregroundColor(.blue)
-//                        Text("Stock Breakdown")
-//                            .font(.system(size: 16))
-//                    }
-//                }
-//                .frame(minWidth: 300, maxWidth: 500)
-//            }
+
             Section(header: Text("How much are you investing?")){
                 HStack{
                     Spacer()

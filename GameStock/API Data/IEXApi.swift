@@ -9,7 +9,7 @@ import SwiftUI
 import CoreData
 import Foundation
 
-var publicAPIToken = "pk_f8be26d2c6644a89942aa1a3b226ec09"
+var publicAPIToken = "pk_735b57c54441439d8db9c5ccffb3e3aa"
 
 let top25StockSymbols = ["aapl", "fb", "googl", "msft", "amzn", "tsla", "intc", "ocgn", "sypr", "amd", "ge", "aal", "f", "pfe", "wfc", "nok", "x", "riot", "amc", "twtr", "rail", "xom", "orcl", "nclh", "mvis"]
 var homeStocks = [StockStruct]()
