@@ -16,7 +16,6 @@ var homeStocks = [StockStruct]()
 var stockSymbols = [String]()
 
 
-
 // THIS FUNCTION GETS A LIST OF TOP STOCKS
 // THAT ARE SHOWN IN THE HOME TAB
 func getHomeStocks() {
@@ -221,5 +220,93 @@ func apiGetStockChart(stockSymbol: String, Duration: String) -> [HisStockData] {
         print("Failed trying to get API Main Data")
     }
     return searchResults
+    
+}
+
+
+
+func loadInitialStocksData() {
+    // ❎ Get object reference of CoreData managedObjectContext from the persistent container
+    let managedObjectContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+   
+    //----------------------------
+    // ❎ Define the Fetch Request
+    //----------------------------
+    let fetchRequest = NSFetchRequest<Stock>(entityName: "Stock")
+    fetchRequest.sortDescriptors = [
+        // Primary sort key: artistName
+        NSSortDescriptor(key: "stockSymbol", ascending: true),
+        // Secondary sort key: songName
+        NSSortDescriptor(key: "numberOfShares", ascending: true)
+    ]
+    
+    var initialStocks = [Stock]()
+   
+    do {
+        //-----------------------------
+        // ❎ Execute the Fetch Request
+        //-----------------------------
+        initialStocks = try managedObjectContext.fetch(fetchRequest)
+    } catch {
+        print("Populate Database Failed!")
+        return
+    }
+   
+    if initialStocks.count > 0 {
+        // Database has already been populated
+        print("Database has already been populated!")
+        return
+    }
+   
+    print("Database will be populated!")
+    
+//    let managedObjectContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    
+    let applStock = apiGetStockData(stockSymbol: "aapl")
+    let googleStock = apiGetStockData(stockSymbol: "googl")
+    
+    let applStockEntity = Stock(context: managedObjectContext)
+    let applCompanyEntitry = Company(context: managedObjectContext)
+    let applPhotoEntity = Photo(context: managedObjectContext)
+
+    applStockEntity.numberOfShares = NSNumber(value: 5)
+    applStockEntity.stockSymbol = applStock.symbol
+    
+    applCompanyEntitry.hqLatitude = applStock.latitude as NSNumber
+    applCompanyEntitry.hqLongitude = applStock.longitude as NSNumber
+    applCompanyEntitry.name = applStock.name as String
+    
+    applPhotoEntity.imageUrl = applStock.imgURL
+    
+    applCompanyEntitry.stock = applStockEntity
+    applCompanyEntitry.photo = applPhotoEntity
+    applPhotoEntity.company = applCompanyEntitry
+    
+    let googleStockEntity = Stock(context: managedObjectContext)
+    let googleCompanyEntitry = Company(context: managedObjectContext)
+    let googlePhotoEntity = Photo(context: managedObjectContext)
+
+    googleStockEntity.numberOfShares = NSNumber(value: 2)
+    googleStockEntity.stockSymbol = googleStock.symbol
+    
+    googleCompanyEntitry.hqLatitude = googleStock.latitude as NSNumber
+    googleCompanyEntitry.hqLongitude = googleStock.longitude as NSNumber
+    googleCompanyEntitry.name = googleStock.name as String
+    
+    googlePhotoEntity.imageUrl = googleStock.imgURL
+    
+    googleCompanyEntitry.stock = googleStockEntity
+    googleCompanyEntitry.photo = googlePhotoEntity
+    googlePhotoEntity.company = googleCompanyEntitry
+    
+    initialStocks.append(applStockEntity)
+    initialStocks.append(googleStockEntity)
+    
+    // ❎ CoreData Save operation
+    do {
+        try managedObjectContext.save()
+    } catch {
+        print("ERROR! Can't save Item to Core Db")
+    }
     
 }
