@@ -61,7 +61,6 @@
 		B7E325C626363BDD008E683C /* UtilityFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E325C526363BDD008E683C /* UtilityFunctions.swift */; };
 		B7E325CC26377333008E683C /* Portfolio.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E325CB26377333008E683C /* Portfolio.swift */; };
 		B7E325D1263790C9008E683C /* FavoritesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E325D0263790C9008E683C /* FavoritesList.swift */; };
-		B7E325D42638166E008E683C /* PieChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E325D32638166E008E683C /* PieChart.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -144,7 +143,6 @@
 		B7E325C526363BDD008E683C /* UtilityFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilityFunctions.swift; sourceTree = "<group>"; };
 		B7E325CB26377333008E683C /* Portfolio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Portfolio.swift; sourceTree = "<group>"; };
 		B7E325D0263790C9008E683C /* FavoritesList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesList.swift; sourceTree = "<group>"; };
-		B7E325D32638166E008E683C /* PieChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieChart.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -173,7 +171,6 @@
 			children = (
 				B7E325CB26377333008E683C /* Portfolio.swift */,
 				B7E325D0263790C9008E683C /* FavoritesList.swift */,
-				B7E325D32638166E008E683C /* PieChart.swift */,
 			);
 			path = Portfolio;
 			sourceTree = "<group>";
@@ -200,13 +197,13 @@
 		B719A18A262F589E00337783 /* GameStock */ = {
 			isa = PBXGroup;
 			children = (
+				B719A1A3262F58B600337783 /* Delegates */,
 				B7E325C426363BD0008E683C /* Supporting Files */,
 				B7E325B826309F8D008E683C /* Core DB */,
 				B7E325B426309BC0008E683C /* API Data */,
 				B719A1B5262F65A400337783 /* Data Model */,
 				B719A1AA262F64EE00337783 /* Start Views */,
 				B719A1A4262F63C200337783 /* Tab Bar Views */,
-				B719A1A3262F58B600337783 /* Delegates */,
 				B719A194262F58A500337783 /* Assets.xcassets */,
 				B719A199262F58A500337783 /* LaunchScreen.storyboard */,
 				B719A19C262F58A500337783 /* Info.plist */,
@@ -485,7 +482,6 @@
 				B719A2152636686D00337783 /* NewsList.swift in Sources */,
 				B7E325BA26309F97008E683C /* Stock.swift in Sources */,
 				6BEA7EE62630AB690005F18E /* MapDataStruct.swift in Sources */,
-				B7E325D42638166E008E683C /* PieChart.swift in Sources */,
 				6B3A495B2641B1E200755DBC /* HotStocksList.swift in Sources */,
 				B719A1BD262F69F000337783 /* Settings.swift in Sources */,
 				B719A1BA262F691B00337783 /* Home.swift in Sources */,

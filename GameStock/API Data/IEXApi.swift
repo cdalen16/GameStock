@@ -11,51 +11,27 @@ import Foundation
 
 var publicAPIToken = "pk_735b57c54441439d8db9c5ccffb3e3aa"
 
-let top25StockSymbols = ["aapl", "fb", "googl", "msft", "amzn", "tsla", "intc", "ocgn", "sypr", "amd", "ge", "aal", "f", "pfe", "wfc", "nok", "x", "riot", "amc", "twtr", "rail", "xom", "orcl", "nclh", "mvis"]
+let top10StockSymbols = ["aapl", "fb", "googl", "msft", "amzn", "tsla", "intc", "ocgn", "sypr", "amd"]
 var homeStocks = [StockStruct]()
+var stockSymbols = [String]()
 
+
+
+// THIS FUNCTION GETS A LIST OF TOP STOCKS
+// THAT ARE SHOWN IN THE HOME TAB
 func getHomeStocks() {
-    for symbol in top25StockSymbols {
+    for symbol in top10StockSymbols {
         homeStocks.append(apiGetStockData(stockSymbol: symbol))
     }
 }
 
-var stockSymbols = [String]()
-
-//func getHomeStocks() {
-//    for symbol in top25StockSymbols {
-//        homeStocks.append(apiGetStockData(stockSymbol: symbol))
-//    }
-//}
-func apiGetSymbols() {
-    
-    let apiUrl = "https://cloud.iexapis.com/ref-data/symbols?token=\(publicAPIToken)"
-    
-    
-    let jsonDataFromApi = getJsonDataFromApi(apiUrl: apiUrl)
-    
-    if(jsonDataFromApi == nil){
-        return
-    }
-    do {
-        let jsonResponse = try JSONSerialization.jsonObject(with: jsonDataFromApi!,
-                                                            options: JSONSerialization.ReadingOptions.mutableContainers)
-        
-        if let data = jsonResponse as? [[String : Any]] {
-            for stock in data {
-                if let symbol = stock["symbol"] {
-                    stockSymbols.append(symbol as? String ?? "")
-                }
-            }
-        }
-    } catch{
-        print("Failed trying to get API Data")
-    }
-}
-
-
+//
+/// THIS FUNCTION GETS A STOCK DATA WITH A GIVEN STOCK SYMBOL
+// IT RETURNS A STOCK STRUCT FOR A GIVEN STOCK
+/// - Parameter stockSymbol: Stock Symbol
+/// - Returns: StockStuct
 func apiGetStockData(stockSymbol: String) -> StockStruct {
-
+    
     let apiUrlMain = "https://cloud.iexapis.com/stable/stock/\(stockSymbol)/quote/latestPrices?token=\(publicAPIToken)"
     
     let jsonDataFromApiMain = getJsonDataFromApi(apiUrl: apiUrlMain)
@@ -66,7 +42,7 @@ func apiGetStockData(stockSymbol: String) -> StockStruct {
     
     do {
         let jsonResponseMain = try JSONSerialization.jsonObject(with: jsonDataFromApiMain!,
-                           options: JSONSerialization.ReadingOptions.mutableContainers)
+                                                                options: JSONSerialization.ReadingOptions.mutableContainers)
         
         var high = 0.0
         var low = 0.0
@@ -83,7 +59,7 @@ func apiGetStockData(stockSymbol: String) -> StockStruct {
         var logoUrl = ""
         var state = ""
         var city = ""
-
+        
         if let dataMain = jsonResponseMain as? [String : Any] {
             if let newHigh = dataMain["week52High"] {
                 high = newHigh as? Double ?? 0.0
@@ -121,7 +97,7 @@ func apiGetStockData(stockSymbol: String) -> StockStruct {
             }
             do {
                 let jsonResponseCompany = try JSONSerialization.jsonObject(with: jsonDataFromApiCompany!,
-                                   options: JSONSerialization.ReadingOptions.mutableContainers)
+                                                                           options: JSONSerialization.ReadingOptions.mutableContainers)
                 
                 
                 
@@ -146,9 +122,9 @@ func apiGetStockData(stockSymbol: String) -> StockStruct {
                     
                 }
                 
-               
                 
-                    
+                
+                
             } catch {
                 print("Failed trying to get API Company Data")
             }
@@ -165,7 +141,7 @@ func apiGetStockData(stockSymbol: String) -> StockStruct {
             }
             do {
                 let jsonResponseLogo = try JSONSerialization.jsonObject(with: jsonDataFromApiLogo!,
-                                   options: JSONSerialization.ReadingOptions.mutableContainers)
+                                                                        options: JSONSerialization.ReadingOptions.mutableContainers)
                 
                 
                 
@@ -174,17 +150,17 @@ func apiGetStockData(stockSymbol: String) -> StockStruct {
                         logoUrl = newLogoUrl as? String ?? ""
                     }
                 }
-                    
+                
             } catch {
                 print("Failed trying to get API Logo Data")
             }
-
+            
         }
-
+        
         let nStock = StockStruct(id: UUID(), high: high, low: low, percentChange: percentChange, isMarketOpen: isMarketOpen, label: label, latestPrice: latestPrice, primaryExchange: primaryExchange, symbol: symbol, name: companyName, imgURL: logoUrl, latitude: hqLatitude, longitude: hqLongitude)
         
         return nStock
-
+        
         
     } catch {
         print("Failed trying to get API Main Data")
@@ -192,10 +168,16 @@ func apiGetStockData(stockSymbol: String) -> StockStruct {
     return StockStruct(id: UUID(), high: 0.0, low: 0.0, percentChange: 0.0, isMarketOpen: false, label: "", latestPrice: 0.0, primaryExchange: "", symbol: "", name: "", imgURL: "", latitude: 0.0, longitude: 0.0)
 }
 
+
+/// THIS FUNCTION GETS A CHART DATA TO BE USED FOR THE LINE CHART IN STOCK DETAILS
+/// - Parameters:
+///   - stockSymbol: TAKES IN A STOCK SYMBOL AS AN ARGUMENT
+///   - Duration: <#Duration description#>
+/// - Returns: RETURNS AN ARRAY OF CHART DATA
 func apiGetStockChart(stockSymbol: String, Duration: String) -> [HisStockData] {
     var searchResults = [HisStockData]()
     
-       
+    
     //let apiUrl = "https://cloud.iexapis.com/stable/tops?token=\(publicAPIToken)&symbols=\(stockSymbol)"
     let apiUrlMain = "https://cloud.iexapis.com/stable/stock/\(stockSymbol)/chart/\(Duration)/?token=\(publicAPIToken)"
     
@@ -207,7 +189,7 @@ func apiGetStockChart(stockSymbol: String, Duration: String) -> [HisStockData] {
     
     do {
         let jsonResponseMain = try JSONSerialization.jsonObject(with: jsonDataFromApiMain!,
-                           options: JSONSerialization.ReadingOptions.mutableContainers)
+                                                                options: JSONSerialization.ReadingOptions.mutableContainers)
         
         
         if let jsonObject = jsonResponseMain as? [Dictionary <String, Any>]{
@@ -235,14 +217,9 @@ func apiGetStockChart(stockSymbol: String, Duration: String) -> [HisStockData] {
         } else { return [HisStockData]()}
         
         
-    
-        
-        
-        
-        
     } catch {
         print("Failed trying to get API Main Data")
     }
     return searchResults
-
+    
 }

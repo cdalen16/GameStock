@@ -19,7 +19,7 @@ struct QuestionList: View {
                 Button(action: {    // Button 1
                     //sets user selected ingredient when clicked
                     userData.securityQ = questions[item]
-
+                    
                 }) {
                     HStack {
                         Text(questions[item])
@@ -34,9 +34,9 @@ struct QuestionList: View {
                         }
                     }//End of Hstack
                 }
-            }//foreach
-        } //list
-
+            } // End of Foreach
+        } // End of list
+        
     }
 }
 

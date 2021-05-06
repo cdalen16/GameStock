@@ -43,7 +43,7 @@ struct ForgotPassword: View {
                         .disableAutocorrection(true)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                 }
-                    
+                
             }
             if let validA = UserDefaults.standard.string(forKey: "QA") as String? {
                 if (self.questionAnswer != validA) {
@@ -66,9 +66,7 @@ struct ForgotPassword: View {
         }//End Form
         .navigationBarTitle(Text("Password Reset"), displayMode: .inline)
     }//End body
-    func printer(str: String) {
-        print(str)
-    }
+    
 }
 
 struct ForgotPassword_Previews: PreviewProvider {

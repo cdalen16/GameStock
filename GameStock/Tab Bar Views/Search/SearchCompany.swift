@@ -18,9 +18,6 @@ struct SearchCompany: View {
         NavigationView {
             VStack {
                 SearchBar(searchItem: $searchFieldValue, placeholder: "Search Companies")
-                            
-//                    .padding(.horizontal)
-//                    .padding(.bottom, 50)
                 
                 if apiGetStockData(stockSymbol: searchFieldValue).latestPrice != 0.0 {
                     List {
@@ -40,11 +37,9 @@ struct SearchCompany: View {
                 
             }//End of VStack
             .navigationBarTitle(Text("Search a Company"), displayMode: .large)
-//            .padding(.top, 50)
-            
             
         }   // End of NavigationView
-            .customNavigationViewStyle()  // Given in NavigationStyle.swift
+        .customNavigationViewStyle()  // Given in NavigationStyle.swift
         
     }   // End of body
     

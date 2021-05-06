@@ -8,8 +8,11 @@
 
 import SwiftUI
 
+/// THIS STRUCT ORGANIZES DATA FOR THE RETURN VALUE OF
+/// "getNews()" FUNCTION CALL IN  NewsApiData.swift
+
 struct NewsStruct: Hashable, Codable, Identifiable {
-   
+    
     var id: UUID
     var headline: String
     var author: String

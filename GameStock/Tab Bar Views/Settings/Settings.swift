@@ -6,11 +6,11 @@
 //
 
 import SwiftUI
- 
+
 struct Settings: View {
     // Subscribe to changes in UserData
     @EnvironmentObject var userData: UserData
-   
+    
     //user input
     @State private var passwordEntered = ""
     @State private var passwordVerified = ""
@@ -26,27 +26,27 @@ struct Settings: View {
     
     
     // Define formatter before it is used
-        let costFormatter: NumberFormatter = {
-            let numberFormatter = NumberFormatter()
-            numberFormatter.numberStyle = .decimal
-            numberFormatter.maximumFractionDigits = 2
-            numberFormatter.usesGroupingSeparator = true
-            numberFormatter.groupingSize = 3
-            return numberFormatter
-        }()
-   
+    let costFormatter: NumberFormatter = {
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .decimal
+        numberFormatter.maximumFractionDigits = 2
+        numberFormatter.usesGroupingSeparator = true
+        numberFormatter.groupingSize = 3
+        return numberFormatter
+    }()
+    
     var amountDepoFormatter: Text {
         let inAmount = self.depoAmount
-           
-            // Add thousand separators to trip cost
-            let numberFormatter = NumberFormatter()
-            numberFormatter.numberStyle = .decimal
-            numberFormatter.usesGroupingSeparator = true
-            numberFormatter.groupingSize = 3
-           
-            let amountString = "$" + numberFormatter.string(from: inAmount as NSNumber)!
-            return Text(amountString)
-        }
+        
+        // Add thousand separators to trip cost
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .decimal
+        numberFormatter.usesGroupingSeparator = true
+        numberFormatter.groupingSize = 3
+        
+        let amountString = "$" + numberFormatter.string(from: inAmount as NSNumber)!
+        return Text(amountString)
+    }
     var body: some View {
         NavigationView {
             Form {
@@ -54,7 +54,7 @@ struct Settings: View {
                 Section(header: Text("Deposit Funds")){
                     HStack {
                         TextField("Enter amount", value: $depoAmount, formatter: costFormatter)
-                                    .keyboardType(.numbersAndPunctuation)
+                            .keyboardType(.numbersAndPunctuation)
                         
                         Button(action: {
                             //main user balance
@@ -106,7 +106,7 @@ struct Settings: View {
                                 .disableAutocorrection(true)
                                 .autocapitalization(.none)
                         }
-                       
+                        
                         // Button to clear the text field
                         Button(action: {
                             self.questionAnswer = ""
@@ -115,9 +115,9 @@ struct Settings: View {
                                 .imageScale(.medium)
                                 .font(Font.title.weight(.regular))
                         }
-                       
+                        
                     }   // End of HStack
-                        .frame(minWidth: 300, maxWidth: 500)
+                    .frame(minWidth: 300, maxWidth: 500)
                 }//End of Section
                 Section(header: Text("Enter Password")) {
                     HStack {
@@ -131,7 +131,7 @@ struct Settings: View {
                                 .textFieldStyle(RoundedBorderTextFieldStyle())
                                 .disableAutocorrection(true)
                         }
-                       
+                        
                         // Button to clear the text field
                         Button(action: {
                             self.passwordEntered = ""
@@ -140,9 +140,9 @@ struct Settings: View {
                                 .imageScale(.medium)
                                 .font(Font.title.weight(.regular))
                         }
-                       
+                        
                     }   // End of HStack
-                        .frame(minWidth: 300, maxWidth: 500)
+                    .frame(minWidth: 300, maxWidth: 500)
                 }//End of Section
                 
                 Section(header: Text("Verify Password")) {
@@ -157,7 +157,7 @@ struct Settings: View {
                                 .textFieldStyle(RoundedBorderTextFieldStyle())
                                 .disableAutocorrection(true)
                         }
-                       
+                        
                         // Button to clear the text field
                         Button(action: {
                             self.passwordVerified = ""
@@ -166,9 +166,9 @@ struct Settings: View {
                                 .imageScale(.medium)
                                 .font(Font.title.weight(.regular))
                         }
-                       
+                        
                     }   // End of HStack
-                        .frame(minWidth: 300, maxWidth: 500)
+                    .frame(minWidth: 300, maxWidth: 500)
                 }//End of Section
                 
                 Section(header: Text("Set Password")) {
@@ -201,7 +201,7 @@ struct Settings: View {
         }//End of Nav View
         .alert(isPresented: $showUnmatchedPasswordAlert, content: { self.unmatchedPasswordAlert })
     }   // End of var
-   
+    
     /*
      --------------------------
      MARK: - Password Set Alert
@@ -216,7 +216,7 @@ struct Settings: View {
                 self.questionAnswer = ""
               })
     }
-   
+    
     /*
      --------------------------------
      MARK: - Unmatched Password Alert
@@ -242,10 +242,10 @@ struct Settings: View {
               })
     }
 }
- 
+
 struct Settings_Previews: PreviewProvider {
     static var previews: some View {
         Settings().environmentObject(UserData())
     }
 }
- 
+

@@ -8,6 +8,8 @@
 
 import Foundation
 
+/// THIS STRUCT ORGANIZES DATA FOR THE RETURN VALUE OF
+/// "readQuotesDataFiles()" FUNCTION CALL IN  QuotesData.swift
 public struct QuoteStruct: Hashable, Codable {
     
     //public var id: UUID
@@ -15,9 +17,3 @@ public struct QuoteStruct: Hashable, Codable {
     var from: String
     
 }
-
-/*
-    "text":"I failed my way to success.",
-    "from":"Thomas Edison"
- },
- */

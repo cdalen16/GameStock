@@ -8,6 +8,10 @@
 
 import Foundation
 
+
+/// THIS STRUCT ORGANIZES DATA FOR THE RETURN VALUE OF
+/// "getLatLong()" FUNCTION CALL IN  MapAPIData.swift
+
 struct MapDetails: Hashable, Codable, Identifiable {
     
     var id: UUID

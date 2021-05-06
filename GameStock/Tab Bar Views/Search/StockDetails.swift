@@ -74,7 +74,7 @@ struct StockDetails: View {
             Section(header: Text("Buy Stock")){
                 VStack {
                     HStack {
-                       
+                        
                         //minus button
                         Button(action: {
                             if purchaseAmount > 0 {
@@ -108,7 +108,7 @@ struct StockDetails: View {
                             CompanyEntitry.stock = StockEntity
                             CompanyEntitry.photo = PhotoEntity
                             PhotoEntity.company = CompanyEntitry
-
+                            
                             // ❎ CoreData Save operation
                             do {
                                 try managedObjectContext.save()
@@ -121,7 +121,7 @@ struct StockDetails: View {
                             UserDefaults.standard.set(userData.userBalance, forKey: "balance")
                             
                             //userData.currStocksInvested.append(StockEntity)
-
+                            
                             showStockBoughtAlert = true
                             
                         }) {
@@ -154,7 +154,7 @@ struct StockDetails: View {
                 Section(header: Text("Sell Stock")){
                     VStack {
                         HStack {
-                           
+                            
                             //minus button
                             Button(action: {
                                 if sellAmount > 0 {
@@ -176,22 +176,20 @@ struct StockDetails: View {
                                  ==================================
                                  Save Changes to Core Data Database
                                  ==================================
-                                */
-
+                                 */
+                                
                                 // ❎ CoreData Save operation
                                 do {
                                     try managedObjectContext.save()
                                 } catch {
                                     return
                                 }
-
+                                
                                 
                                 let currAmount = UserDefaults.standard.double(forKey: "balance")
                                 userData.userBalance = currAmount + (Double(sellAmount) * stockDet.latestPrice)
                                 UserDefaults.standard.set(userData.userBalance, forKey: "balance")
                                 
-                                //userData.currStocksInvested.append(StockEntity)
-
                                 showStockSoldAlert = true
                                 
                             }) {
@@ -204,7 +202,6 @@ struct StockDetails: View {
                             )
                             .buttonStyle(BorderlessButtonStyle())
                             
-                            //plus button
                             Button(action: {
                                 sellAmount += 1
                             }) {
@@ -216,32 +213,39 @@ struct StockDetails: View {
                             }.buttonStyle(BorderlessButtonStyle())
                         } // End HStack
                         Text("Price: \(String(format: "%.2f", Double(sellAmount) * stockDet.latestPrice))")
-                        //Text("\(String(format: "%.2f", stock.percentChange * 100))%")
                         
                     } // End VStack
-                }
+                } // End of Section
                 .alert(isPresented: $showStockSoldAlert, content: { self.stockSoldAlert })
             }
-
-        }
+            
+        } // End of Form
         .navigationBarTitle(Text(stockDet.symbol), displayMode: .large)
         .alert(isPresented: $showStockBoughtAlert, content: { self.stockBoughtAlert })
-    }
-   
+    } // End of body
+    
+    // This Function returns a Double array for the LineVIew function
+    // That function only takes a double array
+    // We can get any stock's data by passing a symbol to the api
+    
     func getDoubleArrayForChart(Symbol: String) -> [Double] {
         var arrayResults = [Double]()
         
         let dataArray = apiGetStockChart(stockSymbol: Symbol, Duration: "1m")
-                 
+        
+        // Gets a an array of the results from the api for chart data
+        
         for time in dataArray {
             arrayResults.append(time.fClose)
-
+            
         }
         
         
         //print(arrayResults)
         return arrayResults
     }
+    
+    
     var placeLocationOnMap: some View{
         
         let mapType = MKMapType.standard
@@ -254,6 +258,8 @@ struct StockDetails: View {
             .navigationBarTitle(Text(title ), displayMode: .inline)
             .edgesIgnoringSafeArea(.all)
     }
+    
+    
     var stockBoughtAlert: Alert {
         Alert(title: Text("Stock Bought!"),
               message: Text("You have bought \(purchaseAmount) shares of \(stockDet.symbol) stock!"),

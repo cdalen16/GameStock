@@ -17,7 +17,7 @@ struct HotStocksList: View {
                 NavigationLink(destination: StockDetails(stockDet: aStock, ofStock: Stock(), own: false)){
                     StockItem(stock: aStock)
                 }
-            }
+            } // End of ForEach
         }   // End of List
         .navigationBarTitle(Text("Hot Stocks"), displayMode: .large)
         .onAppear{

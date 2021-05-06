@@ -11,13 +11,13 @@ import CoreData
 
 /*
  🔴 Set Current Product Module:
-    In xcdatamodeld editor, select Trip, show Data Model Inspector, and
-    select Current Product Module from Module menu.
+ In xcdatamodeld editor, select Stock, show Data Model Inspector, and
+ select Current Product Module from Module menu.
  🔴 Turn off Auto Code Generation:
-    In xcdatamodeld editor, select Trip, show Data Model Inspector, and
-    select Manual/None from Codegen menu.
-*/
- 
+ In xcdatamodeld editor, select Stock, show Data Model Inspector, and
+ select Manual/None from Codegen menu.
+ */
+
 // ❎ CoreData Company entity public class
 public class Company: NSManagedObject, Identifiable {
     @NSManaged public var name: String?
@@ -26,4 +26,4 @@ public class Company: NSManagedObject, Identifiable {
     @NSManaged public var stock: Stock?
     @NSManaged public var photo: Photo?
 }
- 
+

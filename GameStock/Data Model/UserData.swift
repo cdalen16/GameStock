@@ -9,7 +9,7 @@
 import Combine
 import SwiftUI
 import CoreData
- 
+
 final class UserData: ObservableObject {
     /*
      ===============================================================================
@@ -22,10 +22,10 @@ final class UserData: ObservableObject {
      By modifying the first View to be shown, ContentView(), with '.environmentObject(UserData())' in
      SceneDelegate, we inject an instance of this UserData() class into the environment and make it
      available to every View subscribing to it by declaring '@EnvironmentObject var userData: UserData'.
-    
+     
      When a change occurs in UserData, every View subscribed to it is notified to re-render its View.
      */
-   
+    
     /*
      ---------------------------
      MARK: - Published Variables
@@ -46,21 +46,20 @@ final class UserData: ObservableObject {
     @Published var quoteList = quotesStructList
     
     @Published var newsSearchResults = getNews(search: "")
-//    @Published var getHotList = getHomeStocks()
     
     @Published var currStocksInvested = [Stock]()
     
-     // Publish imageNumber to refresh the View body in Home.swift when it is changed in the slide show
+    // Publish imageNumber to refresh the View body in Home.swift when it is changed in the slide show
     @Published var stockValue = UserDefaults.standard.double(forKey: "stockValue")
     
     @Published var savedInDatabase =  NotificationCenter.default.publisher(for: .NSManagedObjectContextDidSave)
-
+    
     /*
      Create a Timer using initializer () and store its object reference into slideShowTimer.
      A Timer() object invokes a method after a certain time interval has elapsed.
      */
     var slideShowTimer = Timer()
- 
+    
     /*
      ===============================================================================
      MARK: -               Publisher-Subscriber Design Pattern
@@ -68,20 +67,20 @@ final class UserData: ObservableObject {
      | Publisher:   @Published var under class conforming to ObservableObject      |
      | Subscriber:  Any View declaring '@EnvironmentObject var userData: UserData' |
      ===============================================================================
-    
+     
      By modifying the first View to be shown, ContentView(), with '.environmentObject(UserData())' in
      SceneDelegate, we inject an instance of this UserData() class into the environment and make it
      available to every View subscribing to it by declaring '@EnvironmentObject var userData: UserData'.
-    
+     
      When a change occurs in userData (e.g., deleting a country from the list, reordering countries list,
      adding a new country to the list), every View subscribed to it is notified to re-render its View.
      ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
      NOTE:  Only Views can subscribe to it. You cannot subscribe to it within
-            a non-View Swift file such as our CountriesData.swift file.
+     a non-View Swift file such as our CountriesData.swift file.
      ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
      */
-
-   
+    
+    
     /*
      --------------------------
      MARK: - Scheduling a Timer
@@ -90,26 +89,27 @@ final class UserData: ObservableObject {
     public func startTimer() {
         // Stop timer if running
         stopTimer()
- 
+        
         /*
          Schedule a timer to invoke the fireTimer() method given below
          after 3 seconds in a loop that repeats itself until it is stopped.
          */
         slideShowTimer = Timer.scheduledTimer(timeInterval: 15,
-                             target: self,
-                             selector: (#selector(fireTimer)),
-                             userInfo: nil,
-                             repeats: true)
+                                              target: self,
+                                              selector: (#selector(fireTimer)),
+                                              userInfo: nil,
+                                              repeats: true)
     }
- 
+    
     public func stopTimer() {
         slideShowTimer.invalidate()
     }
-   
+    
+    /// WHEN THIS IS CALLED IT WILL UPDATE THE PRICE FROM THE API FOR A GIVEN STOCK
     @objc func fireTimer() {
         
         var currValue = 0.0
-
+        
         for aStock in currStocksInvested {
             
             let currStock = apiGetStockData(stockSymbol: aStock.stockSymbol!)
@@ -121,6 +121,8 @@ final class UserData: ObservableObject {
         
     }
     
+    // USES QUOTE API TO GET A NEW QUOTE FROM A JSON FILE
+    // EVERYTIME IT IS CALLED
     public func getAQuote() -> QuoteStruct {
         
         let rand = Int.random(in: 0..<325)

@@ -30,11 +30,11 @@ struct MainView: View {
                     Image(systemName: "gear")
                     Text("Settings")
                 }
-           
+            
         }   // End of TabView
-            .font(.headline)
-            .imageScale(.medium)
-            .font(Font.title.weight(.regular))
+        .font(.headline)
+        .imageScale(.medium)
+        .font(Font.title.weight(.regular))
     }
-
+    
 }

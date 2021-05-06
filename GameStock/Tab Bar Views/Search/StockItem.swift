@@ -20,7 +20,6 @@ struct StockItem: View {
                 
             VStack {
                 Text(stock.name)
-//                Text(stock.symbol)
             }
             .frame(width: 120, height: 50, alignment: .leading)
             .padding(.trailing, 10)

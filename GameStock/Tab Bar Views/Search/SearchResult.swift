@@ -13,17 +13,10 @@ struct SearchResult: View {
     
     var body: some View {
         List {
-//            ForEach ()
-//            { item in
-//                NavigationLink(destination: FavoriteDetails(movie:item))
-//                {
-//                    FavoriteItem(movie: item)
-//                }
-//            }
             StockItem(stock: apiGetStockData(stockSymbol: stockSymbol))
-        }
+        } // End of list
         
-    }
+    } // End of body
 }
 
 struct SearchResult_Previews: PreviewProvider {

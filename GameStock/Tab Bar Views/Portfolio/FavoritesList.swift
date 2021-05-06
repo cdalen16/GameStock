@@ -11,7 +11,7 @@ import CoreData
 import SwiftUICharts
 
 struct FavoritesList: View {
-        
+    
     // ❎ CoreData managedObjectContext reference
     @Environment(\.managedObjectContext) var managedObjectContext
     
@@ -32,8 +32,8 @@ struct FavoritesList: View {
                     PieChartView(data: getDoubleArrayForChart(), title: "Stock BreakDown")
                     Spacer()
                 }
-    
-            }
+                
+            } // End Of Section 
             List {
                 /*
                  Each NSManagedObject has internally assigned unique ObjectIdentifier
@@ -44,50 +44,44 @@ struct FavoritesList: View {
                         StockItem(stock: convert(aStock: aStock))
                     }
                 }
-
+                
                 
             }   // End of List
-                .navigationBarTitle(Text("My Investments"), displayMode: .large)
+            .navigationBarTitle(Text("My Investments"), displayMode: .large)
             // Use single column navigation view for iPhone and iPad
             .navigationViewStyle(StackNavigationViewStyle())
         }
-//        .onAppear{
-//            getNamesAndShares()
-//        }
-
+        //        .onAppear{
+        //            getNamesAndShares()
+        //        }
+        
         
     }   // End of body
     
-    func getNamesAndShares() -> [String] {
-        
-        var namesAndShares = [String]()
-        
-        for time in allStocks {
-            
-            let value = Double(NSNumber(value: time.numberOfShares as! Double)) * convert(aStock: time).latestPrice
-            namesAndShares.append("\(time.stockSymbol ?? ""): \(value)")
+    
 
-        }
-        return namesAndShares
-    }
-    
-    
+    // Gets the Double Array for the PIEChart function
+    // It uses the number of Shares that you are invested in times the updated
+    // Price of the Stock you are invested in
+    /// - Returns: DOuble array
     func getDoubleArrayForChart() -> [Double] {
         var arrayResults = [Double]()
         
-                 
+        // It goes through allStocks in the coreDataBase and gets the number of shares of the company
+        
         for time in allStocks {
             arrayResults.append(Double(NSNumber(value: time.numberOfShares as! Double)) * convert(aStock: time).latestPrice)
             
         }
         
-        //print(arrayResults)
         return arrayResults
     }
     
+    // Gets a stockstruct of the given stock by going to the API
     func convert(aStock: Stock) -> StockStruct {
+        
         let thisStock = apiGetStockData(stockSymbol: aStock.stockSymbol!)
-        //print(thisStock)
+
         return(thisStock)
     }
 }   // End of struct

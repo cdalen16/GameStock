@@ -16,19 +16,11 @@ var newsAPIToken = "0a4cc5d87e344b1f96f3151210b07c81"
 
 var newNews = [NewsStruct]()
 
+/// Get news API list from newsAPI.org lets you also search the api to get a news match with a keyword
+/// - Parameter search: Key word to get news
+/// - Returns: RETURNS A NEWS STRUCT
 func getNews(search: String) -> [NewsStruct] {
     
-//    let apiUrl = "https://newsapi.org/v2/everything?q=\(search)&apiKey=\(newsAPIToken)"
-//    let nDatee = Calendar.current.date(byAdding: .day, value: -30, to: Date())!
-//
-//    // Create an instance of DateFormatter
-//    let dateFormatter = DateFormatter()
-//
-//    // Set the date format to yyyy-MM-dd
-//    dateFormatter.dateFormat = "yyyy-MM-dd"
-//
-//    // Format dateAndTime under the dateFormatter and convert it to String
-//    let startDate = dateFormatter.string(from: nDatee)
     
     var apiUrl = ""
     if search.isEmpty {

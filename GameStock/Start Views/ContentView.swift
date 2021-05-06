@@ -10,9 +10,9 @@ import SwiftUI
 struct ContentView: View {
     // Subscribe to changes in UserData
     @EnvironmentObject var userData: UserData
-   
+    
     var body: some View {
-       
+        
         if userData.userAuthenticated {
             return AnyView(MainView())
         } else {
